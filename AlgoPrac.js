@@ -28,18 +28,18 @@ function insertionSort (array) {
         for (var i = 0; i < array.length; i++) {
             
             var currentUnsortedItem = array[i];
-            // console.log('currentUnsortedItem is currently ' + currentUnsortedItem);
+            console.log('currentUnsortedItem is currently ' + currentUnsortedItem);
 
             for (var j = i; j > 0 && currentUnsortedItem < array[j - 1]; j--) {
-                // console.log(currentUnsortedItem + ' < ' + array[j-1] + ' is ' + (currentUnsortedItem < array[j - 1]));
+                console.log(currentUnsortedItem + ' < ' + array[j-1] + ' is ' + (currentUnsortedItem < array[j - 1]));
                 array[j] = array[j - 1];
-                // console.log('** inserting ' + array[j - 1] + ' at index ' + j);
+                console.log('** inserting ' + array[j - 1] + ' at index ' + j);
               }
 
             array[j] = currentUnsortedItem;
-            // console.log('** inserting ' + currentUnsortedItem + ' at index ' + j);
+            console.log('** inserting ' + currentUnsortedItem + ' at index ' + j);
 
-            // console.log('array is now: ' + array);
+            console.log('array is now: ' + array);
         }
         return array;
 }
