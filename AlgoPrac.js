@@ -14,26 +14,26 @@ var arrayUse = [-33, 900, 5, 22, 20, -5, 17, 55, 52, 5];
 //BUBBLESORT
 //=====================================================================================================================
 
-function bubbleSort(array) {
-    var isSorted = false;
+// function bubbleSort(array) {
+//     var isSorted = false;
     
-    while (!isSorted) {
-      isSorted = true;
-      for (var index = 1; index < array.length; index++) {
+//     while (!isSorted) {
+//       isSorted = true;
+//       for (var index = 1; index < array.length; index++) {
         
-        if (array[index - 1] > array[index]) {
-          isSorted = false;
+//         if (array[index - 1] > array[index]) {
+//           isSorted = false;
           
-          var temporaryReference = array[index - 1];
-          array[index - 1] = array[index];
-          array[index] = temporaryReference;
-        }
-      }
-    }
-    return array;
-  }
+//           var temporaryReference = array[index - 1];
+//           array[index - 1] = array[index];
+//           array[index] = temporaryReference;
+//         }
+//       }
+//     }
+//     return array;
+//   }
 
-console.log(bubbleSort(arrayUse));
+// console.log(bubbleSort(arrayUse));
 
 //NOTES
 
