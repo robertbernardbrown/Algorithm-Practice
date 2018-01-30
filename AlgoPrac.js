@@ -266,12 +266,12 @@ function mergeSort(array) {
 
 //NOTES
 
-//Time Complexity:
-//Space Complexity:
-//Stability:
-//Internal/External:
-//Recursive?:
-//Comparison?: 
+//Time Complexity: O (n log n)
+//Space Complexity: out of place
+//Stability: stable
+//Internal/External: External
+//Recursive?: Y
+//Comparison?: N
 
 //WITH EXPLANATION
 
