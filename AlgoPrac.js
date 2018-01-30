@@ -271,7 +271,7 @@ function mergeSort(array) {
 //Stability: stable
 //Internal/External: External
 //Recursive?: Y
-//Comparison?: N
+//Comparison?: Y
 
 //WITH EXPLANATION
 
