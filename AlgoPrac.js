@@ -218,50 +218,50 @@ var arrayUse = [-33, 900, 5, 22, 20, -5, 17, 55, 52, 5];
 
 
 function mergeSort(array) {
-    var arraySize = array.length;
-   
-    if (arraySize === 1) { 
-      return; 
-    }
+  var arraySize = array.length;
 
-    var midpoint = Math.floor(arraySize / 2);
-    var leftArray = array.slice(0, midpoint);
-    var rightArray = array.slice(midpoint);
-   
-    mergeSort(leftArray);
-    mergeSort(rightArray);
-    
-    merge(leftArray, rightArray, array);
-    
-    return array;
+  if (arraySize === 1) {
+    return;
   }
-  
-  function merge(leftArray, rightArray, array) {
-    var index = 0;
-   
-    while (leftArray.length && rightArray.length) {
-      console.log('array is: ', array);
-      if (rightArray[0] < leftArray[0]) {
-        array[index++] = rightArray.shift();
-      } else {
-        array[index++] = leftArray.shift();
-      }
-    }
-    
-    while (leftArray.length) {
-      console.log('left array is: ', leftArray);
+
+  var midpoint = Math.floor(arraySize / 2);
+  var leftArray = array.slice(0, midpoint);
+  var rightArray = array.slice(midpoint);
+
+  mergeSort(leftArray);
+  mergeSort(rightArray);
+
+  merge(leftArray, rightArray, array);
+
+  return array;
+}
+
+function merge(leftArray, rightArray, array) {
+  var index = 0;
+
+  while (leftArray.length && rightArray.length) {
+    console.log('array is: ', array);
+    if (rightArray[0] < leftArray[0]) {
+      array[index++] = rightArray.shift();
+    } else {
       array[index++] = leftArray.shift();
     }
-    
-    while (rightArray.length) {
-      console.log('right array is: ', rightArray);
-      array[index++] = rightArray.shift();
-    }
-    
-    console.log('** end of merge function ** array is: ', array);
   }
 
-  mergeSort(arrayUse);
+  while (leftArray.length) {
+    console.log('left array is: ', leftArray);
+    array[index++] = leftArray.shift();
+  }
+
+  while (rightArray.length) {
+    console.log('right array is: ', rightArray);
+    array[index++] = rightArray.shift();
+  }
+
+  console.log('** end of merge function ** array is: ', array);
+}
+
+mergeSort(arrayUse);
 
 
 //NOTES
@@ -278,35 +278,35 @@ function mergeSort(array) {
 // function mergeSort(array) {
 //     // Determine the size of the input array.
 //     var arraySize = array.length;
-   
+
 //     // If the array being passed in has only one element
 //     // within it, it is considered to be a sorted array.
 //     if (arraySize === 1) { 
 //       return; 
 //     }
-   
+
 //     // If array contains more than one element,
 //     // split it into two parts (left and right arrays).
 //     var midpoint = Math.floor(arraySize / 2);
 //     var leftArray = array.slice(0, midpoint);
 //     var rightArray = array.slice(midpoint);
-   
+
 //     // Recursively call mergeSort() on
 //     // leftArray and rightArray sublists.
 //     mergeSort(leftArray);
 //     mergeSort(rightArray);
-    
+
 //     // After the mergeSort functions above finish executing,
 //     // merge the sorted leftArray and rightArray together.
 //     merge(leftArray, rightArray, array);
-    
+
 //     // Return the fully sorted array.
 //     return array;
 //   }
-  
+
 //   function merge(leftArray, rightArray, array) {
 //     var index = 0;
-   
+
 //     while (leftArray.length && rightArray.length) {
 //       console.log('array is: ', array);
 //       if (rightArray[0] < leftArray[0]) {
@@ -315,16 +315,16 @@ function mergeSort(array) {
 //         array[index++] = leftArray.shift();
 //       }
 //     }
-    
+
 //     while (leftArray.length) {
 //       console.log('left array is: ', leftArray);
 //       array[index++] = leftArray.shift();
 //     }
-    
+
 //     while (rightArray.length) {
 //       console.log('right array is: ', rightArray);
 //       array[index++] = rightArray.shift();
 //     }
-    
+
 //     console.log('** end of merge function ** array is: ', array);
 //   }
