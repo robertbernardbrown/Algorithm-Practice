@@ -1,4 +1,4 @@
-//All algorithms come from Vadehi Hiejoshi's blog - BaseCS
+//All algorithms come from Vaidehi Joshi's blog - BaseCS
 
 var arrayUse = [-33, 900, 5, 22, 20, -5, 17, 55, 52, 5];
 
@@ -506,78 +506,78 @@ var arrayUse = [-33, 900, 5, 22, 20, -5, 17, 55, 52, 5];
 //=====================================================================================================================
 
 
-function heapSort(array) {
-  // Build our max heap.
-  buildMaxHeap(array);
+// function heapSort(array) {
+//   // Build our max heap.
+//   buildMaxHeap(array);
 
-  // Find last element.
-  lastElement = array.length - 1;
+//   // Find last element.
+//   lastElement = array.length - 1;
 
-  // Continue heap sorting until we have
-  // just one element left in the array.
-  while(lastElement > 0) {
-    console.log(array);
+//   // Continue heap sorting until we have
+//   // just one element left in the array.
+//   while(lastElement > 0) {
+//     console.log(array);
 
-    swap(array, 0, lastElement);
+//     swap(array, 0, lastElement);
 
-    heapify(array, 0, lastElement);
+//     heapify(array, 0, lastElement);
 
-    lastElement -= 1
-  }
-}
+//     lastElement -= 1
+//   }
+// }
 
-function buildMaxHeap(array) {
-  var i;
-  i = array.length / 2 - 1;
-  i = Math.floor(i);
+// function buildMaxHeap(array) {
+//   var i;
+//   i = array.length / 2 - 1;
+//   i = Math.floor(i);
 
-  // Build a max heap out of
-  // all array elements passed in.
-  while (i >= 0) {
-    heapify(array, i, array.length);
-    i -= 1;
-  }
-}
+//   // Build a max heap out of
+//   // all array elements passed in.
+//   while (i >= 0) {
+//     heapify(array, i, array.length);
+//     i -= 1;
+//   }
+// }
 
 
-function heapify(heap, i, max) {
-  var index, leftChild, righChild;
+// function heapify(heap, i, max) {
+//   var index, leftChild, righChild;
   
-  while(i < max) {
-    index = i;
+//   while(i < max) {
+//     index = i;
 
-    leftChild = 2*i + 1;
-    righChild = leftChild + 1;
+//     leftChild = 2*i + 1;
+//     righChild = leftChild + 1;
 
-    if (leftChild < max && heap[leftChild] > heap[index]) {
-      index = leftChild;
-    }
+//     if (leftChild < max && heap[leftChild] > heap[index]) {
+//       index = leftChild;
+//     }
 
-    if (righChild < max && heap[righChild] > heap[index]) {
-      index = righChild;
-    }
+//     if (righChild < max && heap[righChild] > heap[index]) {
+//       index = righChild;
+//     }
       
-    if (index == i) {
-      return;
-    }
+//     if (index == i) {
+//       return;
+//     }
 
-    swap(heap,i, index);
+//     swap(heap,i, index);
     
-    i = index;
-  }
-}
+//     i = index;
+//   }
+// }
 
-function swap(array, firstItemIndex, lastItemInde) {
-  var tmp = array[firstItemIndex];
+// function swap(array, firstItemIndex, lastItemInde) {
+//   var tmp = array[firstItemIndex];
   
-  // Swap first and last items in the array.
-  array[firstItemIndex] = array[lastItemInde];
-  array[lastItemInde] = tmp;
-}
+//   // Swap first and last items in the array.
+//   array[firstItemIndex] = array[lastItemInde];
+//   array[lastItemInde] = tmp;
+// }
 
-console.log(arrayUse);
-heapSort(arrayUse);
-console.log(arrayUse);
+// console.log(arrayUse);
+// heapSort(arrayUse);
+// console.log(arrayUse);
 
 //NOTES
 //Time Complexity: O (n log n)
@@ -601,7 +601,6 @@ console.log(arrayUse);
   
 //   add(data){
 //     var node = new Node(data);
-    
 //     //if first node set head and tail
 //     if(!this.head){
 //       this.head = node;
@@ -667,6 +666,7 @@ console.log(arrayUse);
 // }
 
 // var list = new LinkedList();
+// console.log(list);
 // list.add(2);
 // list.add(4);
 // list.add(6);
