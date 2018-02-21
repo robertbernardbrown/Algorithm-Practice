@@ -1,3 +1,5 @@
+//All algorithms come from Vadehi Hiejoshi's blog - BaseCS
+
 var arrayUse = [-33, 900, 5, 22, 20, -5, 17, 55, 52, 5];
 
 //=====================================================================================================================
@@ -500,95 +502,182 @@ var arrayUse = [-33, 900, 5, 22, 20, -5, 17, 55, 52, 5];
 // }
 
 //=====================================================================================================================
+//HEAP SORT
+//=====================================================================================================================
+
+
+function heapSort(array) {
+  // Build our max heap.
+  buildMaxHeap(array);
+
+  // Find last element.
+  lastElement = array.length - 1;
+
+  // Continue heap sorting until we have
+  // just one element left in the array.
+  while(lastElement > 0) {
+    console.log(array);
+
+    swap(array, 0, lastElement);
+
+    heapify(array, 0, lastElement);
+
+    lastElement -= 1
+  }
+}
+
+function buildMaxHeap(array) {
+  var i;
+  i = array.length / 2 - 1;
+  i = Math.floor(i);
+
+  // Build a max heap out of
+  // all array elements passed in.
+  while (i >= 0) {
+    heapify(array, i, array.length);
+    i -= 1;
+  }
+}
+
+
+function heapify(heap, i, max) {
+  var index, leftChild, righChild;
+  
+  while(i < max) {
+    index = i;
+
+    leftChild = 2*i + 1;
+    righChild = leftChild + 1;
+
+    if (leftChild < max && heap[leftChild] > heap[index]) {
+      index = leftChild;
+    }
+
+    if (righChild < max && heap[righChild] > heap[index]) {
+      index = righChild;
+    }
+      
+    if (index == i) {
+      return;
+    }
+
+    swap(heap,i, index);
+    
+    i = index;
+  }
+}
+
+function swap(array, firstItemIndex, lastItemInde) {
+  var tmp = array[firstItemIndex];
+  
+  // Swap first and last items in the array.
+  array[firstItemIndex] = array[lastItemInde];
+  array[lastItemInde] = tmp;
+}
+
+console.log(arrayUse);
+heapSort(arrayUse);
+console.log(arrayUse);
+
+//NOTES
+//Time Complexity: O (n log n)
+//Space Complexity: in place
+//Stability: unstable
+//Internal/External: internal
+//Recursive?: N
+//Comparison?: Y
+
+
+//=====================================================================================================================
 //LINKED LIST
 //=====================================================================================================================
 
-class LinkedList{
-  constructor(){
-    this.head = null;
-    this.last = null;
-    this.length = 0;
-  }
+// class LinkedList{
+//   constructor(){
+//     this.head = null;
+//     this.last = null;
+//     this.length = 0;
+//   }
   
-  add(data){
-    var node = new Node(data);
+//   add(data){
+//     var node = new Node(data);
     
-    //if first node set head and tail
-    if(!this.head){
-      this.head = node;
-      this.last = node;
-    }
-    else{
-      this.last.next = node;
-      this.last = node;
-    }
-    this.length++;
-  }
+//     //if first node set head and tail
+//     if(!this.head){
+//       this.head = node;
+//       this.last = node;
+//     }
+//     else{
+//       this.last.next = node;
+//       this.last = node;
+//     }
+//     this.length++;
+//   }
   
-  remove(index){
-    var current = this.head;
-    var prev;
-    var count = 0;
+//   remove(index){
+//     var current = this.head;
+//     var prev;
+//     var count = 0;
     
-    //iterate to the proper spot for removal, tracking previous and current node
-    while(current.next && count != index){
-      prev = count? current : null;
-      current = current.next;
-      count++;
-    }
+//     //iterate to the proper spot for removal, tracking previous and current node
+//     while(current.next && count != index){
+//       prev = count? current : null;
+//       current = current.next;
+//       count++;
+//     }
     
-    //change previous to point to next and skip over current
-    prev.next = current.next;
-    this.length--;
+//     //change previous to point to next and skip over current
+//     prev.next = current.next;
+//     this.length--;
     
-    //if the last node was removed, update last reference
-    if(index === this.length){
-      this.last = prev;
-    }   
-  }
+//     //if the last node was removed, update last reference
+//     if(index === this.length){
+//       this.last = prev;
+//     }   
+//   }
   
-  search(index){
-    var current = this.head;
-    var count = 0;
+//   search(index){
+//     var current = this.head;
+//     var count = 0;
     
-    //iterate to the proper spot
-    while (current.next && count != index){
-      current = current.next;
-      count++;
-    }
+//     //iterate to the proper spot
+//     while (current.next && count != index){
+//       current = current.next;
+//       count++;
+//     }
     
-    return current.data;
-  }
+//     return current.data;
+//   }
   
-  print(){
-    var current = this.head;
+//   print(){
+//     var current = this.head;
     
-    while(current != null){
-      console.log(current.data);
-      current = current.next;
-    }
-  }
-}
+//     while(current != null){
+//       console.log(current.data);
+//       current = current.next;
+//     }
+//   }
+// }
 
-class Node{
-  constructor(data, next = null){
-    this.data = data;
-    this.next = next;
-  }
-}
+// class Node{
+//   constructor(data, next = null){
+//     this.data = data;
+//     this.next = next;
+//   }
+// }
 
-var list = new LinkedList();
-list.add(2);
-list.add(4);
-list.add(6);
-list.add(3);
-list.add(5);
-list.add(7);
-list.print();
-console.log("-----");
-list.remove(5);
-list.print();
-console.log("-----");
-list.add(2);
-list.add(4);
-list.print()
+// var list = new LinkedList();
+// list.add(2);
+// list.add(4);
+// list.add(6);
+// list.add(3);
+// list.add(5);
+// list.add(7);
+// list.print();
+// console.log("-----");
+// list.remove(5);
+// list.print();
+// console.log("-----");
+// list.add(2);
+// list.add(4);
+// list.print()
