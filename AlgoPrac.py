@@ -64,10 +64,8 @@ print (l)
 
 class Solution(object):
     def twoSum(self, nums, target):
-        sorted(nums)
-        sum = 0
-        i = 1
-        while nums < target:
-        	if nums[i] + nums[i-1] = target:
-                return [nums[i], nums[i-1]]
-            return "No target met"
+    	sorted(nums)
+    	sum = 0
+    	i = 1
+    	while nums < target:
+			nums.index[0]
