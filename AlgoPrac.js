@@ -587,6 +587,57 @@ var arrayUse = [-33, 900, 5, 22, 20, -5, 17, 55, 52, 5];
 //Recursive?: N
 //Comparison?: Y
 
+//=====================================================================================================================
+//COUNTING SORT
+//=====================================================================================================================
+
+
+// Notice that we needed to know the max/min value in order to use counting sort at all!
+// function countingSort(array, minimumValue, maximumValue) {
+//     var i;
+//     var z = 0;
+//     var count = [];
+  
+//     // Count the instances of each element.
+//     for (i = minimumValue; i <= maximumValue; i++) {
+//       count[i] = 0;
+//     }
+  
+//     // We now have a placeholder array that we'll use to keep
+//     // track of which element will be sorted into each index.
+//     console.log(count);
+  
+//     // Build up our index count array.
+//     for (i=0; i < array.length; i++) {
+//       count[array[i]]++;
+//     }
+  
+//     console.log(count);
+  
+//     // Modify array and move elements into their sorted location.
+//     for (i = minimumValue; i <= maximumValue; i++) {
+//       while (count[i]-- > 0) {
+//         console.log('item at index ' + z + ' is: ', array[z]);
+  
+//         array[z++] = i;
+  
+//         console.log('moving item ' + i + ' to correct location');
+//       }
+//     }
+   
+//     console.log("Hooray! Array is now sorted!");
+  
+//     return array;
+//   }
+
+//NOTES
+
+//Time Complexity: O (n + k) {if range of values to be sorted is larger than the actual amount of values to be sorted, doesn't make sense. k > n in that case}
+//Space Complexity: out of place
+//Stability: stable
+//Internal/External: external
+//Recursive?: N
+//Comparison?: N
 
 //=====================================================================================================================
 //LINKED LIST
