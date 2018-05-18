@@ -1,6 +1,7 @@
 //All algorithms come from Vaidehi Joshi's blog - BaseCS
 
 var arrayUse = [-33, 900, 5, 22, 20, -5, 17, 55, 52, 5];
+var testArray = [ 331, 454, 230, 34, 343, 45, 59, 453, 345, 231, 9 ];
 
 //=====================================================================================================================
 //SELECTION SORT
@@ -506,74 +507,74 @@ var arrayUse = [-33, 900, 5, 22, 20, -5, 17, 55, 52, 5];
 //=====================================================================================================================
 
 
-// function heapSort(array) {
-//   // Build our max heap.
-//   buildMaxHeap(array);
+function heapSort(array) {
+  // Build our max heap.
+  buildMaxHeap(array);
 
-//   // Find last element.
-//   lastElement = array.length - 1;
+  // Find last element.
+  lastElement = array.length - 1;
 
-//   // Continue heap sorting until we have
-//   // just one element left in the array.
-//   while(lastElement > 0) {
-//     console.log(array);
+  // Continue heap sorting until we have
+  // just one element left in the array.
+  while(lastElement > 0) {
+    console.log(array);
 
-//     swap(array, 0, lastElement);
+    swap(array, 0, lastElement);
 
-//     heapify(array, 0, lastElement);
+    heapify(array, 0, lastElement);
 
-//     lastElement -= 1
-//   }
-// }
+    lastElement -= 1
+  }
+}
 
-// function buildMaxHeap(array) {
-//   var i;
-//   i = array.length / 2 - 1;
-//   i = Math.floor(i);
+function buildMaxHeap(array) {
+  var i;
+  i = array.length / 2 - 1;
+  i = Math.floor(i);
 
-//   // Build a max heap out of
-//   // all array elements passed in.
-//   while (i >= 0) {
-//     heapify(array, i, array.length);
-//     i -= 1;
-//   }
-// }
+  // Build a max heap out of
+  // all array elements passed in.
+  while (i >= 0) {
+    heapify(array, i, array.length);
+    i -= 1;
+  }
+}
 
 
-// function heapify(heap, i, max) {
-//   var index, leftChild, righChild;
+function heapify(heap, i, max) {
+  var index, leftChild, righChild;
   
-//   while(i < max) {
-//     index = i;
+  while(i < max) {
+    index = i;
 
-//     leftChild = 2*i + 1;
-//     righChild = leftChild + 1;
+    leftChild = 2*i + 1;
+    righChild = leftChild + 1;
 
-//     if (leftChild < max && heap[leftChild] > heap[index]) {
-//       index = leftChild;
-//     }
+    if (leftChild < max && heap[leftChild] > heap[index]) {
+      index = leftChild;
+    }
 
-//     if (righChild < max && heap[righChild] > heap[index]) {
-//       index = righChild;
-//     }
+    if (righChild < max && heap[righChild] > heap[index]) {
+      index = righChild;
+    }
       
-//     if (index == i) {
-//       return;
-//     }
+    if (index == i) {
+      return;
+    }
 
-//     swap(heap,i, index);
+    swap(heap,i, index);
     
-//     i = index;
-//   }
-// }
+    i = index;
+  }
+}
 
-// function swap(array, firstItemIndex, lastItemInde) {
-//   var tmp = array[firstItemIndex];
+function swap(array, firstItemIndex, lastItemInde) {
+  var tmp = array[firstItemIndex];
   
-//   // Swap first and last items in the array.
-//   array[firstItemIndex] = array[lastItemInde];
-//   array[lastItemInde] = tmp;
-// }
+  // Swap first and last items in the array.
+  array[firstItemIndex] = array[lastItemInde];
+  array[lastItemInde] = tmp;
+}
 
 // console.log(arrayUse);
 // heapSort(arrayUse);
@@ -732,3 +733,109 @@ var arrayUse = [-33, 900, 5, 22, 20, -5, 17, 55, 52, 5];
 // list.add(2);
 // list.add(4);
 // list.print()
+
+//=====================================================================================================================
+//RADIX SORT
+//=====================================================================================================================
+
+
+// One  function name so no global scope pollution.
+// lower-case as this is a function rather than an object
+// Pass the array of numbers rather than use a global.
+// Returns a new array of numbers sorted.
+function radixSort (numbers) {
+    function emptyBuckets () {          // empties buckets and adds contents back to workArray
+        workArray.length = 0;
+        for (i = 0; i < 10; i += 1) {   // could have used buckets forEach but this is quicker on average
+            if(buckets[i].length > 0){
+                workArray.push(...buckets[i]);
+                buckets[i].length = 0;
+            }
+        }
+    }
+    var i;                  // hoist declarations 
+    const results = [];     // array that holds the finnal sorted numbers
+    const buckets = [[], [], [], [], [], [], [], [], [], []];  // buckets
+    const workArray = [...numbers]; // copy the numbers
+    var power = 0;                  // current digit as a power of ten
+    var tenPow = 1;                 // ten to the power of power
+    if(numbers.length <= 1){        // if one or no items then dont sort
+        return workArray;           // dont sort if there is no need.
+    }
+    // as numbers are sorted and moved to the result array the numbers 
+    while (workArray.length > 0) {
+        for (i = 0; i < workArray.length; i += 1) { // for all numbers still being sorted
+            if (workArray[i] < tenPow) {            // is the number samller than the current digit
+                results.push(workArray[i]);         //Yes it is sorted then remove a put o nthe result array
+            } else {
+                // add to bucket. Use Math.floor and save complexity doing it in one statement line
+                buckets[Math.floor(workArray[i] / tenPow) % 10].push(workArray[i]);
+            }
+        }
+        power += 1;
+        tenPow = Math.pow(10, power);        
+        emptyBuckets();
+    }
+    return results;
+} 
+
+
+// console.log(radixSort(arrayUse))
+
+//Time Complexity: O (Kn) {where K is biggest number in radix}
+//Space Complexity: out of place
+//Stability: stable
+//Internal/External: internal
+//Recursive?: Can be if MSD, LSD is iterative
+//Comparison?: N
+
+
+//=====================================================================================================================
+//TEST FUNCTION
+//=====================================================================================================================
+
+
+function test() {
+    function log (data) {console.log(data); }
+    function createRandomArray (maxItems, maxDigits, digitRange) {
+        var numSize, num;
+        var numbers = [];
+        var count = Math.random() * maxItems;
+        while (count-- > 0) {
+            numSize = Math.random() * maxDigits;
+            num = 0;
+            while (numSize-- > 0) {
+                num *= 10;
+                num += Math.floor(Math.random() * digitRange);
+            }
+            numbers.push(num);
+        }
+        return numbers;
+    }
+    var items, digits, range, array;
+    for (items = 0; items <= 20; items += 1) {
+        for (digits = 1; digits <= 9; digits += 1) {
+            for (range = 1; range <= 9; range += 1) {
+                array = createRandomArray(items, digits, range);
+                length = array.length;
+                numbers = [...array];
+                heapSort(numbers);
+                array.sort((a, b) => a - b);
+                if (array.join(",") !== numbers.join(",")) {
+                    log("==============================");
+                    log("Test failed.");
+                    log("Items = "+length)
+                    log("Max digits = "+digits)
+                    log("Digit range = "+range)
+                    log("- Result --------------------")
+                    numbers.forEach(n => log(n))
+                    log("- Expected ------------------")
+                    array.forEach(n => log(n) )
+                    return
+                }
+            }
+        }
+    }
+    log("All passed")
+}
+test();
