@@ -7,32 +7,23 @@ var testArray = [ 331, 454, 230, 34, 343, 45, 59, 453, 345, 231, 9 ];
 //SELECTION SORT
 //=====================================================================================================================
 
-// function selectionSort(numbers) {
-//     var length = numbers.length;
-
-//     for (var index = 0; index < length; index++) {
-//         var smallestNumIndex = index;
-//         for (var nextNumIndex = index + 1; nextNumIndex < length; nextNumIndex++) {
-//             console.log('comparing ' + numbers[smallestNumIndex] + ' and ' + numbers[nextNumIndex])
-//             if (numbers[nextNumIndex] < numbers[smallestNumIndex]) {
-//                 smallestNumIndex = nextNumIndex;
-//             }
-//         }
-
-//         if (smallestNumIndex != index) {
-//             var currentNumber = numbers[index];
-//             console.log('swapping the number ' + numbers[smallestNumIndex] + ' for the number ' + numbers[index]);
-
-//             numbers[index] = numbers[smallestNumIndex];
-//             numbers[smallestNumIndex] = currentNumber;
-//         }
-
-//         console.log('numbers currently looks like: ' + numbers);
-//     }
-
-//     return numbers;
-// }
-
+function selectionSort(numbers) {
+    var length = numbers.length;
+    for (var index = 0; index < length; index++) {
+        var smallestNumIndex = index;
+        for (var nextNumIndex = index + 1; nextNumIndex < length; nextNumIndex++) {
+            if (numbers[nextNumIndex] < numbers[smallestNumIndex]) {
+                smallestNumIndex = nextNumIndex;
+            }
+        }
+        if (smallestNumIndex != index) {
+            var currentNumber = numbers[index];
+            numbers[index] = numbers[smallestNumIndex];
+            numbers[smallestNumIndex] = currentNumber;
+        }
+    }
+    return numbers;
+}
 // selectionSort(arrayUse);
 
 
@@ -85,24 +76,21 @@ var testArray = [ 331, 454, 230, 34, 343, 45, 59, 453, 345, 231, 9 ];
 //BUBBLESORT
 //=====================================================================================================================
 
-// function bubbleSort(array) {
-//     var isSorted = false;
-
-//     while (!isSorted) {
-//         isSorted = true;
-//         for (var index = 1; index < array.length; index++) {
-
-//             if (array[index - 1] > array[index]) {
-//                 isSorted = false;
-
-//                 var temporaryReference = array[index - 1];
-//                 array[index - 1] = array[index];
-//                 array[index] = temporaryReference;
-//             }
-//         }
-//     }
-//     return array;
-// }
+function bubbleSort(array) {
+    var isSorted = false;
+    while (!isSorted) {
+        isSorted = true;
+        for (var index = 1; index < array.length; index++) {
+            if (array[index - 1] > array[index]) {
+                isSorted = false;
+                var temporaryReference = array[index - 1];
+                array[index - 1] = array[index];
+                array[index] = temporaryReference;
+            }
+        }
+    }
+    return array;
+}
 
 // console.log(bubbleSort(arrayUse));
 
@@ -152,26 +140,16 @@ var testArray = [ 331, 454, 230, 34, 343, 45, 59, 453, 345, 231, 9 ];
 //=====================================================================================================================
 
 
-// function insertionSort(array) {
-
-//     for (var i = 0; i < array.length; i++) {
-
-//         var currentUnsortedItem = array[i];
-//         console.log('currentUnsortedItem is currently ' + currentUnsortedItem);
-
-//         for (var j = i; j > 0 && currentUnsortedItem < array[j - 1]; j--) {
-//             console.log(currentUnsortedItem + ' < ' + array[j - 1] + ' is ' + (currentUnsortedItem < array[j - 1]));
-//             array[j] = array[j - 1];
-//             console.log('** inserting ' + array[j - 1] + ' at index ' + j);
-//         }
-
-//         array[j] = currentUnsortedItem;
-//         console.log('** inserting ' + currentUnsortedItem + ' at index ' + j);
-
-//         console.log('array is now: ' + array);
-//     }
-//     return array;
-// }
+function insertionSort(array) {
+    for (var i = 0; i < array.length; i++) {
+        var currentUnsortedItem = array[i];
+        for (var j = i; j > 0 && currentUnsortedItem < array[j - 1]; j--) {
+            array[j] = array[j - 1];
+        }
+        array[j] = currentUnsortedItem;
+    }
+    return array;
+}
 
 // console.log(insertionSort(arrayUse));
 
@@ -220,49 +198,36 @@ var testArray = [ 331, 454, 230, 34, 343, 45, 59, 453, 345, 231, 9 ];
 //=====================================================================================================================
 
 
-// function mergeSort(array) {
-//   var arraySize = array.length;
+function mergeSort(array) {
+  var arraySize = array.length;
+  if (arraySize === 1) {
+    return;
+  }
+  var midpoint = Math.floor(arraySize / 2);
+  var leftArray = array.slice(0, midpoint);
+  var rightArray = array.slice(midpoint);
+  mergeSort(leftArray);
+  mergeSort(rightArray);
+  merge(leftArray, rightArray, array);
+  return array;
+}
 
-//   if (arraySize === 1) {
-//     return;
-//   }
-
-//   var midpoint = Math.floor(arraySize / 2);
-//   var leftArray = array.slice(0, midpoint);
-//   var rightArray = array.slice(midpoint);
-
-//   mergeSort(leftArray);
-//   mergeSort(rightArray);
-
-//   merge(leftArray, rightArray, array);
-
-//   return array;
-// }
-
-// function merge(leftArray, rightArray, array) {
-//   var index = 0;
-
-//   while (leftArray.length && rightArray.length) {
-//     console.log('array is: ', array);
-//     if (rightArray[0] < leftArray[0]) {
-//       array[index++] = rightArray.shift();
-//     } else {
-//       array[index++] = leftArray.shift();
-//     }
-//   }
-
-//   while (leftArray.length) {
-//     console.log('left array is: ', leftArray);
-//     array[index++] = leftArray.shift();
-//   }
-
-//   while (rightArray.length) {
-//     console.log('right array is: ', rightArray);
-//     array[index++] = rightArray.shift();
-//   }
-
-//   console.log('** end of merge function ** array is: ', array);
-// }
+function merge(leftArray, rightArray, array) {
+  var index = 0;
+  while (leftArray.length && rightArray.length) {
+    if (rightArray[0] < leftArray[0]) {
+      array[index++] = rightArray.shift();
+    } else {
+      array[index++] = leftArray.shift();
+    }
+  }
+  while (leftArray.length) {
+    array[index++] = leftArray.shift();
+  }
+  while (rightArray.length) {
+    array[index++] = rightArray.shift();
+  }
+}
 
 // mergeSort(arrayUse);
 
@@ -336,66 +301,43 @@ var testArray = [ 331, 454, 230, 34, 343, 45, 59, 453, 345, 231, 9 ];
 //QUICK SORT
 //=====================================================================================================================
 
-// function quickSort(items, leftIndex, rightIndex) {
-//     var pivotIndex;
-//       if (items.length > 1) {
-//       pivotIndex = partition(items, leftIndex, rightIndex);
-  
-//       console.log('** pivot is: ', items[pivotIndex]);
-  
-//       if (leftIndex < pivotIndex - 1) {
-//         quickSort(items, leftIndex, pivotIndex - 1);
-//       }
- 
-//       if (pivotIndex < rightIndex) {
-//         quickSort(items, pivotIndex, rightIndex);
-//       }
-  
-//     }
-  
-//     return items;
-// }
-
-// function partition(items, left, right) {
-//     var pivot = items[Math.floor((right + left) / 2)];
-//     var l = left;
-//     var r = right;
-  
-//     console.log('** pivot is: ', pivot);
-//     console.log('** left is: ', items[left]);
-//     console.log('** right is: ', items[right]);
-  
-//     while (l <= r) {
-//       while (items[l] < pivot) {
-//         l++;
-//         console.log('l is now pointing to: ', items[l]);
-//       }
-  
-//       while (items[r] > pivot) {
-//         r--;
-//         console.log('r is now pointing to: ', items[r]);
-//       }
-  
-//       if (l <= r) {
-//         console.log('** now swapping l and r pointers: ', items[l], items[r]);
-  
-//         swap(items, l, r);
-  
-//         l++;
-//         r--;
-  
-//       }
-// }
-  
-//     return l;
-//   }
-
-// function swap(items, leftPointerIndex, rightPointerIndex){
-//     var tempReference = items[leftPointerIndex];
-
-//     items[leftPointerIndex] = items[rightPointerIndex];
-//     items[rightPointerIndex] = tempReference;
-// }
+function quickSort(items, leftIndex, rightIndex) {
+    var pivotIndex;
+      if (items.length > 1) {
+      pivotIndex = partition(items, leftIndex, rightIndex);  
+      if (leftIndex < pivotIndex - 1) {
+        quickSort(items, leftIndex, pivotIndex - 1);
+      }
+      if (pivotIndex < rightIndex) {
+        quickSort(items, pivotIndex, rightIndex);
+      }
+    }
+    return items;
+}
+function partition(items, left, right) {
+    var pivot = items[Math.floor((right + left) / 2)];
+    var l = left;
+    var r = right;
+    while (l <= r) {
+      while (items[l] < pivot) {
+        l++;
+      }
+      while (items[r] > pivot) {
+        r--;
+      }
+      if (l <= r) {  
+        swap(items, l, r);
+        l++;
+        r--;
+      }
+}
+    return l;
+}
+function swap(items, leftPointerIndex, rightPointerIndex){
+    var tempReference = items[leftPointerIndex];
+    items[leftPointerIndex] = items[rightPointerIndex];
+    items[rightPointerIndex] = tempReference;
+}
 
 // console.log(arrayUse);
 // quickSort(arrayUse, 0, arrayUse.length - 1);
@@ -510,28 +452,21 @@ var testArray = [ 331, 454, 230, 34, 343, 45, 59, 453, 345, 231, 9 ];
 function heapSort(array) {
   // Build our max heap.
   buildMaxHeap(array);
-
   // Find last element.
   lastElement = array.length - 1;
-
   // Continue heap sorting until we have
   // just one element left in the array.
   while(lastElement > 0) {
     console.log(array);
-
     swap(array, 0, lastElement);
-
     heapify(array, 0, lastElement);
-
     lastElement -= 1
   }
 }
-
 function buildMaxHeap(array) {
   var i;
   i = array.length / 2 - 1;
   i = Math.floor(i);
-
   // Build a max heap out of
   // all array elements passed in.
   while (i >= 0) {
@@ -539,38 +474,27 @@ function buildMaxHeap(array) {
     i -= 1;
   }
 }
-
-
 function heapify(heap, i, max) {
   var index, leftChild, righChild;
-  
   while(i < max) {
     index = i;
-
     leftChild = 2*i + 1;
     righChild = leftChild + 1;
-
     if (leftChild < max && heap[leftChild] > heap[index]) {
       index = leftChild;
     }
-
     if (righChild < max && heap[righChild] > heap[index]) {
       index = righChild;
     }
-      
     if (index == i) {
       return;
     }
-
     swap(heap,i, index);
-    
     i = index;
   }
 }
-
 function swap(array, firstItemIndex, lastItemInde) {
   var tmp = array[firstItemIndex];
-  
   // Swap first and last items in the array.
   array[firstItemIndex] = array[lastItemInde];
   array[lastItemInde] = tmp;
@@ -594,42 +518,33 @@ function swap(array, firstItemIndex, lastItemInde) {
 
 
 // Notice that we needed to know the max/min value in order to use counting sort at all!
-// function countingSort(array, minimumValue, maximumValue) {
-//     var i;
-//     var z = 0;
-//     var count = [];
-  
-//     // Count the instances of each element.
-//     for (i = minimumValue; i <= maximumValue; i++) {
-//       count[i] = 0;
-//     }
-  
-//     // We now have a placeholder array that we'll use to keep
-//     // track of which element will be sorted into each index.
-//     console.log(count);
-  
-//     // Build up our index count array.
-//     for (i=0; i < array.length; i++) {
-//       count[array[i]]++;
-//     }
-  
-//     console.log(count);
-  
-//     // Modify array and move elements into their sorted location.
-//     for (i = minimumValue; i <= maximumValue; i++) {
-//       while (count[i]-- > 0) {
-//         console.log('item at index ' + z + ' is: ', array[z]);
-  
-//         array[z++] = i;
-  
-//         console.log('moving item ' + i + ' to correct location');
-//       }
-//     }
-   
-//     console.log("Hooray! Array is now sorted!");
-  
-//     return array;
-//   }
+function countingSort(array, minimumValue, maximumValue) {
+    var i;
+    var z = 0;
+    var count = [];
+    // Count the instances of each element.
+    for (i = minimumValue; i <= maximumValue; i++) {
+      count[i] = 0;
+    }
+    // We now have a placeholder array that we'll use to keep
+    // track of which element will be sorted into each index.
+    console.log(count);
+    // Build up our index count array.
+    for (i=0; i < array.length; i++) {
+      count[array[i]]++;
+    }
+    console.log(count);
+    // Modify array and move elements into their sorted location.
+    for (i = minimumValue; i <= maximumValue; i++) {
+      while (count[i]-- > 0) {
+        console.log('item at index ' + z + ' is: ', array[z]);
+        array[z++] = i;
+        console.log('moving item ' + i + ' to correct location');
+      }
+    }
+    console.log("Hooray! Array is now sorted!");
+    return array;
+  }
 
 //NOTES
 
@@ -644,78 +559,78 @@ function swap(array, firstItemIndex, lastItemInde) {
 //LINKED LIST
 //=====================================================================================================================
 
-// class LinkedList{
-//   constructor(){
-//     this.head = null;
-//     this.last = null;
-//     this.length = 0;
-//   }
+class LinkedList{
+  constructor(){
+    this.head = null;
+    this.last = null;
+    this.length = 0;
+  }
   
-//   add(data){
-//     var node = new Node(data);
-//     //if first node set head and tail
-//     if(!this.head){
-//       this.head = node;
-//       this.last = node;
-//     }
-//     else{
-//       this.last.next = node;
-//       this.last = node;
-//     }
-//     this.length++;
-//   }
+  add(data){
+    var node = new Node(data);
+    //if first node set head and tail
+    if(!this.head){
+      this.head = node;
+      this.last = node;
+    }
+    else{
+      this.last.next = node;
+      this.last = node;
+    }
+    this.length++;
+  }
   
-//   remove(index){
-//     var current = this.head;
-//     var prev;
-//     var count = 0;
+  remove(index){
+    var current = this.head;
+    var prev;
+    var count = 0;
     
-//     //iterate to the proper spot for removal, tracking previous and current node
-//     while(current.next && count != index){
-//       prev = count? current : null;
-//       current = current.next;
-//       count++;
-//     }
+    //iterate to the proper spot for removal, tracking previous and current node
+    while(current.next && count != index){
+      prev = count? current : null;
+      current = current.next;
+      count++;
+    }
     
-//     //change previous to point to next and skip over current
-//     prev.next = current.next;
-//     this.length--;
+    //change previous to point to next and skip over current
+    prev.next = current.next;
+    this.length--;
     
-//     //if the last node was removed, update last reference
-//     if(index === this.length){
-//       this.last = prev;
-//     }   
-//   }
+    //if the last node was removed, update last reference
+    if(index === this.length){
+      this.last = prev;
+    }   
+  }
   
-//   search(index){
-//     var current = this.head;
-//     var count = 0;
+  search(index){
+    var current = this.head;
+    var count = 0;
     
-//     //iterate to the proper spot
-//     while (current.next && count != index){
-//       current = current.next;
-//       count++;
-//     }
+    //iterate to the proper spot
+    while (current.next && count != index){
+      current = current.next;
+      count++;
+    }
     
-//     return current.data;
-//   }
+    return current.data;
+  }
   
-//   print(){
-//     var current = this.head;
+  print(){
+    var current = this.head;
     
-//     while(current != null){
-//       console.log(current.data);
-//       current = current.next;
-//     }
-//   }
-// }
+    while(current != null){
+      console.log(current.data);
+      current = current.next;
+    }
+  }
+}
 
-// class Node{
-//   constructor(data, next = null){
-//     this.data = data;
-//     this.next = next;
-//   }
-// }
+class Node{
+  constructor(data, next = null){
+    this.data = data;
+    this.next = next;
+  }
+}
 
 // var list = new LinkedList();
 // console.log(list);
@@ -819,7 +734,8 @@ function test() {
                 array = createRandomArray(items, digits, range);
                 length = array.length;
                 numbers = [...array];
-                heapSort(numbers);
+                selectionSort(numbers);
+                console.log(selectionSort(numbers));
                 array.sort((a, b) => a - b);
                 if (array.join(",") !== numbers.join(",")) {
                     log("==============================");
