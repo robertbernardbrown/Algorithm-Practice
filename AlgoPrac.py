@@ -1,3 +1,5 @@
+arrayUse = [-33, 900, 5, 22, 20, -5, 17, 55, 52, 5]
+
 #=====================================================================================================================
 #LINKED LIST (DOUBLE)
 #=====================================================================================================================
@@ -48,24 +50,32 @@ class LinkedList :
 		return s
 
 # example code
-l = LinkedList()
+# l = LinkedList()
 
-l.add( 'a' )
-l.add( 'b' )
-l.add( 'c' )
+# l.add( 'a' )
+# l.add( 'b' )
+# l.add( 'c' )
 
-print (l)
-print (l.search( 'z' ))
-print (l)
+# print (l)
+# print (l.search( 'z' ))
+# print (l)
 
 #=====================================================================================================================
-#LEET CODE - TWOSUM
+#SELECTION SORT
 #=====================================================================================================================
 
-class Solution(object):
-    def twoSum(self, nums, target):
-    	sorted(nums)
-    	sum = 0
-    	i = 1
-    	while nums < target:
-			nums.index[0]
+def selectionSort(alist):
+	for fillslot in range(len(alist)-1,0,-1):
+		positionOfMax=0
+		for location in range(1,fillslot+1):
+			if alist[location]>alist[positionOfMax]:
+				positionOfMax = location
+		temp = alist[fillslot]
+		alist[fillslot] = alist[positionOfMax]
+		alist[positionOfMax] = temp
+	print(alist)
+
+selectionSort(arrayUse)
+
+
+
