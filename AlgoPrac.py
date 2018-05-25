@@ -67,18 +67,22 @@ class LinkedList :
 arrayUse = [-33, 900, 5, 22, 20, -5, 17, 55, 52, 5]
 
 def selectionSort(alist):
-	for fillslot in range(len(alist)-1,0,-1):
-		print("fillslot", fillslot, alist[fillslot])
+	for reverseLoop in range(len(alist)-1,0,-1):
+		print("reverseLoop", reverseLoop, alist[reverseLoop])
 		positionOfMax=0
 		print("positionMax", positionOfMax, alist[positionOfMax])
-		for location in range(1,fillslot+1):
+		for location in range(1,reverseLoop+1):
 			print("location", location, alist[location])
 			if alist[location]>alist[positionOfMax]:
 				positionOfMax = location
 				print("positionMax2", positionOfMax, alist[positionOfMax])
-		temp = alist[fillslot]
-		alist[fillslot] = alist[positionOfMax]
+		temp = alist[reverseLoop]
+		print("temp", reverseLoop, temp)
+		alist[reverseLoop] = alist[positionOfMax]
+		print("alist at reverseLoop", alist[reverseLoop])
 		alist[positionOfMax] = temp
+		print("alist at positionOfMax", alist[positionOfMax])
+		print(alist)
 	print(alist)
 
 selectionSort(arrayUse)
