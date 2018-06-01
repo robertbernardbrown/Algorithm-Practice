@@ -99,18 +99,18 @@ arrayUse = [-33, 900, 5, 22, 20, -5, 17, 55, 52, 5]
 
 # selectionSort(arrayUse)
 
-def selectionSort(alist):
-	for outerLoop in range(len(alist)-1,0,-1):
-		maxRef = 0
-		for innerLoop in range(0, outerLoop+1):
-			if alist[maxRef] < alist[innerLoop]:
-				maxRef = innerLoop
-		temp = alist[outerLoop]
-		alist[outerLoop] = alist[maxRef]
-		alist[maxRef] = temp
-	print(alist)
+# def selectionSort(alist):
+# 	for outerLoop in range(len(alist)-1,0,-1):
+# 		maxRef = 0
+# 		for innerLoop in range(0, outerLoop+1):
+# 			if alist[maxRef] < alist[innerLoop]:
+# 				maxRef = innerLoop
+# 		temp = alist[outerLoop]
+# 		alist[outerLoop] = alist[maxRef]
+# 		alist[maxRef] = temp
+# 	print(alist)
 
-selectionSort(arrayUse)
+# selectionSort(arrayUse)
 
 #=====================================================================================================================
 #HEAP
@@ -118,7 +118,7 @@ selectionSort(arrayUse)
 
 class BinHeap:
 	def __init__(self):
-		self.heapList = [0]
+		self.heapList = []
 		self.currentSize = 0
 	def percUp(self, i):
 		while i // 2 > 0:
@@ -162,12 +162,11 @@ class BinHeap:
 			self.percDown(i)
 			i = i - 1
 		return self.currentSize
-	def showHeap(self):
-		return self
 
 bh = BinHeap()
 bh.buildHeap(arrayUse)
 
-print(bh)
-print(bh.delMin())
-print(bh.showHeap())
+bh.insert(46)
+bh.insert(-444)
+print(bh.heapList)
+print(bh.minChild)
