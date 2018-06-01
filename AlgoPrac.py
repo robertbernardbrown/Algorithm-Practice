@@ -99,6 +99,19 @@ arrayUse = [-33, 900, 5, 22, 20, -5, 17, 55, 52, 5]
 
 # selectionSort(arrayUse)
 
+def selectionSort(alist):
+	for outerLoop in range(len(alist)-1,0,-1):
+		maxRef = 0
+		for innerLoop in range(0, outerLoop+1):
+			if alist[maxRef] < alist[innerLoop]:
+				maxRef = innerLoop
+		temp = alist[outerLoop]
+		alist[outerLoop] = alist[maxRef]
+		alist[maxRef] = temp
+	print(alist)
+
+selectionSort(arrayUse)
+
 #=====================================================================================================================
 #HEAP
 #=====================================================================================================================
