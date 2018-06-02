@@ -112,6 +112,20 @@ arrayUse = [-33, 900, 5, 22, 20, -5, 17, 55, 52, 5]
 
 # selectionSort(arrayUse)
 
+def selectionSort(alist):
+	for outerLoop in range(len(alist)-1, 0, -1):
+		maxRef = 0
+		for innerLoop in range(0, outerLoop+1):
+			if alist[maxRef] < alist[innerLoop]:
+				maxRef = innerLoop
+		temp = alist[maxRef]
+		alist[maxRef] = alist[outerLoop]
+		alist[outerLoop] = temp
+	print(alist)
+
+selectionSort(arrayUse)
+
+
 #=====================================================================================================================
 #HEAP
 #=====================================================================================================================
@@ -170,3 +184,14 @@ bh.insert(46)
 bh.insert(-444)
 print(bh.heapList)
 print(bh.minChild)
+
+class BinHeap:
+	def _init_ (self):
+		self.heap = []
+		self.heapSize = 0
+
+class BinHeap:
+	def _init_ (self):
+		self.heap = []
+		self.size = 0
+	
