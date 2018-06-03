@@ -112,19 +112,31 @@ arrayUse = [-33, 900, 5, 22, 20, -5, 17, 55, 52, 5]
 
 # selectionSort(arrayUse)
 
-def selectionSort(alist):
-	for outerLoop in range(len(alist)-1, 0, -1):
-		maxRef = 0
-		for innerLoop in range(0, outerLoop+1):
-			if alist[maxRef] < alist[innerLoop]:
-				maxRef = innerLoop
-		temp = alist[maxRef]
-		alist[maxRef] = alist[outerLoop]
-		alist[outerLoop] = temp
-	print(alist)
+# def selectionSort(alist):
+# 	for outerLoop in range(len(alist)-1, 0, -1):
+# 		maxRef = 0
+# 		for innerLoop in range(0, outerLoop+1):
+# 			if alist[maxRef] < alist[innerLoop]:
+# 				maxRef = innerLoop
+# 		temp = alist[maxRef]
+# 		alist[maxRef] = alist[outerLoop]
+# 		alist[outerLoop] = temp
+# 	print(alist)
 
-selectionSort(arrayUse)
+# selectionSort(arrayUse)
 
+# def selectionSort (alist):
+# 	for outerLoop in range(len(alist) -1, 0, -1):
+# 		maxRef = 0
+# 		for innerLoop in range(0, outerLoop +1):
+# 			if alist[innerLoop] > alist[maxRef]:
+# 				maxRef = innerLoop
+# 		temp = alist[outerLoop]
+# 		alist[outerLoop] = alist[maxRef]
+# 		alist[maxRef] = temp
+# 	print(alist)
+
+# selectionSort(arrayUse)
 
 #=====================================================================================================================
 #HEAP
@@ -135,12 +147,18 @@ class BinHeap:
 		self.heapList = []
 		self.currentSize = 0
 	def percUp(self, i):
+		print(self.heapList)
+		print("size of array: ", i)
+		print("size of array//2: ", i//2)
 		while i // 2 > 0:
+			print("index at size: ", self.heapList[i], "index at half size: ", self.heapList[i // 2])
 			if self.heapList[i] < self.heapList[i // 2]:
 				tmp = self.heapList[i // 2]
 				self.heapList[i // 2] = self.heapList[i]
-				self.heapList[i] = tmp 
+				self.heapList[i] = tmp
+				print("heapList after swap: ", self.heapList) 
 			i = i // 2
+			print("new i: ", i)
 	def insert(self, k):
 		self.heapList.append(k)
 		self.currentSize = self.currentSize + 1
@@ -185,13 +203,29 @@ bh.insert(-444)
 print(bh.heapList)
 print(bh.minChild)
 
-class BinHeap:
-	def _init_ (self):
-		self.heap = []
-		self.heapSize = 0
+# class BinHeap:
+# 	def _init_ (self):
+# 		self.heap = []
+# 		self.heapSize = 0
 
-class BinHeap:
-	def _init_ (self):
-		self.heap = []
-		self.size = 0
+# class BinHeap:
+# 	def _init_ (self):
+# 		self.heap = []
+# 		self.size = 0
 	
+# class BinHeap:
+# 	def _init_ (self):
+# 		self.heap = [0]
+# 		self.size = 0
+# 	def percUp (self, i):
+# 		while i // 2 > 0:
+# 			if self.heap[i] < self.heap[i//2]:
+# 				temp = self.heap[i//2]
+# 				self.heap[i//2] = self.heap[i]
+# 				self.heap[i] = temp
+# 			i = i // 2
+
+
+#=====================================================================================================================
+#HASH TABLE
+#=====================================================================================================================
