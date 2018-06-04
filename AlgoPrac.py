@@ -238,9 +238,9 @@ print(bh.minChild)
 # 				self.heap[i] = temp
 # 			i = i // 2
 
-class BinHeap:
+class BinHeap2:
 	def __init__ (self):
-		self.heap = []
+		self.heap = [0]
 		self.count = 0
 	def percUp (self, i):
 		while i // 2 > 0:
@@ -249,6 +249,18 @@ class BinHeap:
 				self.heap[i] = self.heap[i//2]
 				self.heap[i//2] = temp
 			i = i // 2
+	def insert(self, k):
+		self.heap.append(k)
+		self.count = self.count+1
+		self.percUp(self.count)
+
+bh = BinHeap2()
+bh.insert(2)
+bh.insert(3)
+bh.insert(80)
+bh.insert(-1)
+
+print("heap", bh.heap)
 
 
 #=====================================================================================================================
