@@ -754,4 +754,39 @@ function test() {
     }
     log("All passed")
 }
-test();
+// test();
+
+//=====================================================================================================================
+//INTERVIEW PRACTICE
+//=====================================================================================================================
+
+
+//REVERSE A STRING
+
+function stringReverser(str){
+  let revStr = "";
+  for(let i = str.length - 1; i >= 0; i--){
+    revStr += str[i]
+  };
+  console.log(revStr);
+}
+
+stringReverser("hello")
+
+let obj = {
+  dude: "Yo",
+  number: 123,
+  pokemon: "Charizard"
+}
+
+obj.count = (function countFunc() {
+  console.log("hi")
+})();
+
+function objLoop(obj) {
+  for(let i in obj){
+    console.log(obj[i]);
+  };
+}
+
+objLoop(obj);
