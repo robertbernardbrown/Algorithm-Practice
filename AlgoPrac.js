@@ -855,7 +855,7 @@ let ar = [1, 2, 3, 4, 4, 4, "cat", "cat", "dog", NaN, 123];
 
 function removeDupes(arr){
   let newArr = [];
-  arr.filter(function uniqueArr(curr, i) {
+  arr.map(function uniqueArr(curr, i) {
     if(newArr.indexOf(curr) === -1){
       newArr.push(curr);
     }
@@ -863,4 +863,46 @@ function removeDupes(arr){
   console.log(newArr);
 };
 
-removeDupes(ar);
+// removeDupes(ar);
+
+//FIND A PEAK ELEMENT
+
+//unsorted
+function peak(nums){
+  for (let i = 0; i < nums.length; i++) {
+    let element = nums[i];
+    if(element > nums[i+1]){
+      return(element)
+    }
+  }
+}
+
+// console.log(peak([1, 2, 88, 22, 5]));
+
+//sorted
+
+var nums = [1, 2, 3, 4, 99]
+
+// console.log(nums[nums.length-1]);
+
+
+//EVERY ELEMENT IS A PAIR BUT ONE IN ARR, FIND THAT ONE
+
+var elementPairArr = [1,1,2,2,3,3,4,4,5,6,6,7,7,8,8,9,9];
+
+function findNonPair(arr){
+  for (var i = 0; i <= arr.length; i++) {
+    var element = arr[i];
+    if (i===arr.length){
+      return arr
+    }
+    else if(element === arr[i+1]){
+      i++
+    } 
+    else if (element !== arr[i+1]) {
+      return(element)
+    }
+  }
+}
+
+console.log(findNonPair(elementPairArr));
