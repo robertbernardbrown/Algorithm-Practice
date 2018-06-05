@@ -774,7 +774,9 @@ function stringReverser(str){
   console.log(revStr);
 }
 
-stringReverser("a")
+// stringReverser("a")
+
+//LOOP THROUGH OBJ
 
 let obj = {
   dude: "Yo",
@@ -782,9 +784,9 @@ let obj = {
   pokemon: "Charizard"
 }
 
-obj.count = (function countFunc() {
+obj.count = function countFunc() {
   console.log("hi")
-})();
+};
 
 function objLoop(obj) {
   for(let key in obj){
@@ -795,4 +797,70 @@ function objLoop(obj) {
   }
 }
 
-objLoop(obj);
+// objLoop(obj);
+
+//BOOLS
+
+function bools() {
+  //==
+
+  // Compare String with number to same number, but with type of number. 
+  "45" == 45; // Returns true.
+  // Compare True with the String of "1"
+  true == "1"; // Returns true.
+  // Compare True with the Number of 1
+  true == 1; //Returns true.
+  // Compare [1] with true
+  true == [1]; // Returns true.
+
+  //truthy and falsy
+
+  // Use if statement to check truthy and falsy values
+  if (!false) { console.log("I'm falsy") }
+  if (!0) { console.log("I'm falsy") }
+  if (!'' || !"") { console.log("I'm falsy") }
+  if (!null) { console.log("I'm falsy") }
+  if (!undefined) { console.log("I'm falsy") }
+  if (!NaN) { console.log("I'm falsy") }
+  /* Everything else if truthy, including:
+  1) '0' (a string containing a single zero)
+  2) 'false' (a string containing the text “false”)
+  3) [] (an empty array)
+  4) {} (an empty object)
+  5) function(){} (an “empty” function)
+  */
+
+  // Compare False with Number of 0
+  false == 0; // returns true;
+  // Compare False with the String of 0
+  false == "0"; // returns true
+  // Compare Undefined with Null
+  undefined == null; // returns true
+  // Compare [] with false
+  [] == false; // returns true
+  // Compare "" with false
+  "" == false; // returns true
+  // Compare NaN with NaN
+  NaN == NaN; // returns false. 
+  // Use Number.isNaN(NaN)
+  Number.isNaN(NaN) // returns true.
+  // Note that Infinity, -Infinity, "true" (string form), and "false" (string form) will all only equal themselves.
+}
+
+//bools();
+
+//REMOVE DUPLICATE MEMBERS IN ARRAY
+
+let ar = [1, 2, 3, 4, 4, 4, "cat", "cat", "dog", NaN, 123];
+
+function removeDupes(arr){
+  let newArr = [];
+  arr.filter(function uniqueArr(curr, i) {
+    if(newArr.indexOf(curr) === -1){
+      newArr.push(curr);
+    }
+  })
+  console.log(newArr);
+};
+
+removeDupes(ar);
