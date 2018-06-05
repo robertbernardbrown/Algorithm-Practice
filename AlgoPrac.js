@@ -787,9 +787,12 @@ obj.count = (function countFunc() {
 })();
 
 function objLoop(obj) {
-  for(let i in obj){
-    console.log(obj[i]);
-  };
+  for(let key in obj){
+    if (obj.hasOwnProperty(key)){
+      console.log(obj[key]);
+      console.log(key)
+    }
+  }
 }
 
 objLoop(obj);
