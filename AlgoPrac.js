@@ -765,13 +765,16 @@ function test() {
 
 function stringReverser(str){
   let revStr = "";
+  if (typeof str != "string" || str <=1){
+    console.log(str)
+  }
   for(let i = str.length - 1; i >= 0; i--){
     revStr += str[i]
   };
   console.log(revStr);
 }
 
-stringReverser("hello")
+stringReverser("a")
 
 let obj = {
   dude: "Yo",
