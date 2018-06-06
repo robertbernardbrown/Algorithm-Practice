@@ -138,18 +138,31 @@ arrayUse = [-33, 900, 5, 22, 20, -5, 17, 55, 52, 5]
 
 # selectionSort(arrayUse)
 
-def selectionSort(alist):
-	for outerLoop in range(len(alist)-1, 0, -1):
-		maxRef = 0
-		for innerLoop in range(0, outerLoop+1):
-			if alist[maxRef] < alist[innerLoop]:
-				maxRef = innerLoop
-		temp = alist[outerLoop]
-		alist[outerLoop] = alist[maxRef]
-		alist[maxRef] = temp
-	print(alist)
+# def selectionSort(alist):
+# 	for outerLoop in range(len(alist)-1, 0, -1):
+# 		maxRef = 0
+# 		for innerLoop in range(0, outerLoop+1):
+# 			if alist[maxRef] < alist[innerLoop]:
+# 				maxRef = innerLoop
+# 		temp = alist[outerLoop]
+# 		alist[outerLoop] = alist[maxRef]
+# 		alist[maxRef] = temp
+# 	print(alist)
 
-selectionSort(arrayUse)
+# selectionSort(arrayUse)
+
+# def selectionSort(alist):
+# 	for outerLoop in range(len(alist)-1, 0, -1):
+# 		maxRef = 0
+# 		for innerLoop in range(0, outerLoop+1):
+# 			if alist[maxRef] < alist[innerLoop]:
+# 				maxRef = innerLoop
+# 		temp = alist[maxRef]
+# 		alist[maxRef] = alist[outerLoop]
+# 		alist[outerLoop] = temp
+# 	print(alist)
+
+# selectionSort(arrayUse)
 
 #=====================================================================================================================
 #HEAP
@@ -208,13 +221,13 @@ class BinHeap:
 			i = i - 1
 		return self.currentSize
 
-bh = BinHeap()
-bh.buildHeap(arrayUse)
+# bh = BinHeap()
+# bh.buildHeap(arrayUse)
 
-bh.insert(46)
-bh.insert(-444)
-print(bh.heapList)
-print(bh.minChild)
+# bh.insert(46)
+# bh.insert(-444)
+# print(bh.heapList)
+# print(bh.minChild)
 
 # class BinHeap:
 # 	def _init_ (self):
@@ -238,29 +251,65 @@ print(bh.minChild)
 # 				self.heap[i] = temp
 # 			i = i // 2
 
-class BinHeap2:
-	def __init__ (self):
+class binHeap2:
+	def __init__(self):
 		self.heap = [0]
 		self.count = 0
-	def percUp (self, i):
+	def percUp(self, i):
 		while i // 2 > 0:
 			if self.heap[i] < self.heap[i//2]:
 				temp = self.heap[i]
 				self.heap[i] = self.heap[i//2]
 				self.heap[i//2] = temp
-			i = i // 2
+			i = i//2
 	def insert(self, k):
 		self.heap.append(k)
-		self.count = self.count+1
+		self.count = self.count + 1
 		self.percUp(self.count)
+	def percDown(self,i):
+		while (i * 2) <= self.count:
+			mc = self.minChild(i)
+			if self.heap[i] > self.heap[mc]:
+				tmp = self.heap[i]
+				self.heap[i] = self.heap[mc]
+				self.heap[mc] = tmp
+			i = mc
+	def minChild(self, i):
+		if i * 2 + 1 > self.count:
+			return i * 2
+		else:
+			if self.heap[i*2] < self.heap[i*2+1]:
+				return i * 2
+			else:
+				return i * 2 + 1
+	def delMin(self):
+		retVal = self.heap[1]
+		self.heap[1] = self.heap[self.count]
+		self.count = self.count - 1
+		self.heap.pop()
+		self.percDown(1)
+		return retVal
+	def buildHeap(self, alist):
+		i = len(alist) //2
+		self.count = len(alist)
+		self.heap = [0] + alist[:]
+		while (i>0):
+			self.percDown(i)
+			i=i-1
+		return self.count
 
-bh = BinHeap2()
+
+bh = binHeap2()
 bh.insert(2)
 bh.insert(3)
 bh.insert(80)
 bh.insert(-1)
-
 print("heap", bh.heap)
+bh.delMin()
+print("heap2", bh.heap)
+list2 = [33, -2, 4, 7890]
+bh.buildHeap(list2)
+print("heap3", bh.heap)
 
 
 #=====================================================================================================================
