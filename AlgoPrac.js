@@ -905,4 +905,39 @@ function findNonPair(arr){
   }
 }
 
-console.log(findNonPair(elementPairArr));
+// console.log(findNonPair(elementPairArr));
+
+//ADD NUMBER TOGETHER UNTIL THE TWO NUMBERS DON'T EQUAL A TWO DIGIT NUMBER
+
+function splitIntToArr(passedInt) {
+  var arrString = passedInt.toString().split("");
+  var arrNum = [];
+  for (var i = 0; i < arrString.length; i++) {
+    arrNum.push(parseInt(arrString[i]));
+  }
+  return arrNum;
+}
+
+function userExecution(userNum) {
+if (userNum < 10) {
+    return userNum;
+}
+return addElements(userNum);
+}
+
+function addElements(passedNum) {
+    var num = 0;
+    var arr = splitIntToArr(passedNum);
+
+    for (var i = 0; i < arr.length; i++) {
+        num += arr[i];
+    }
+
+    if (num < 10) {
+        return num;
+    } else {
+        return addElements(num);
+    }
+}
+
+console.log(userExecution(78));
