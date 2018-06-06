@@ -252,64 +252,68 @@ class BinHeap:
 # 			i = i // 2
 
 class binHeap2:
-	def __init__(self):
+	def __init__ (self):
 		self.heap = [0]
-		self.count = 0
-	def percUp(self, i):
-		while i // 2 > 0:
+		self.heapSize = 0
+	def percUp (self, i):
+		while i//2>0:
 			if self.heap[i] < self.heap[i//2]:
 				temp = self.heap[i]
 				self.heap[i] = self.heap[i//2]
 				self.heap[i//2] = temp
 			i = i//2
-	def insert(self, k):
+	def insert (self, k):
 		self.heap.append(k)
-		self.count = self.count + 1
-		self.percUp(self.count)
-	def percDown(self,i):
-		while (i * 2) <= self.count:
+		self.heapSize = self.heapSize + 1
+		self.percUp(self.heapSize)
+	def percDown (self, i):
+		print("START PERCDOWN")
+		print("what is i*2", i*2)
+		print("heap size:", self.heapSize)
+		while (i * 2) <= self.heapSize:
 			mc = self.minChild(i)
+			print("minchild index", mc, "minchild val", self.heap[mc])
 			if self.heap[i] > self.heap[mc]:
-				tmp = self.heap[i]
+				temp = self.heap[i]
 				self.heap[i] = self.heap[mc]
-				self.heap[mc] = tmp
+				self.heap[mc] = temp
+				print("new minchild index", mc, "new minchild val", self.heap[mc])
 			i = mc
-	def minChild(self, i):
-		if i * 2 + 1 > self.count:
+	def minChild (self, i):
+		if i * 2 + 1 > self.heapSize:
 			return i * 2
 		else:
 			if self.heap[i*2] < self.heap[i*2+1]:
 				return i * 2
-			else:
+			else: 
 				return i * 2 + 1
-	def delMin(self):
+	def delMin (self):
 		retVal = self.heap[1]
-		self.heap[1] = self.heap[self.count]
-		self.count = self.count - 1
+		self.heap[1] = self.heap[self.heapSize]
+		self.heapSize = self.heapSize - 1
 		self.heap.pop()
 		self.percDown(1)
 		return retVal
-	def buildHeap(self, alist):
-		i = len(alist) //2
-		self.count = len(alist)
+	def buildHeap (self, alist):
+		i = len(alist) // 2
+		self.heapSize = len(alist)
 		self.heap = [0] + alist[:]
-		while (i>0):
+		while (i > 0):
 			self.percDown(i)
-			i=i-1
-		return self.count
+			i = i - 1
+		return self.heapSize
 
-
-bh = binHeap2()
-bh.insert(2)
-bh.insert(3)
-bh.insert(80)
-bh.insert(-1)
-print("heap", bh.heap)
-bh.delMin()
-print("heap2", bh.heap)
-list2 = [33, -2, 4, 7890]
-bh.buildHeap(list2)
-print("heap3", bh.heap)
+# bh = binHeap2()
+# bh.insert(2)
+# bh.insert(3)
+# bh.insert(80)
+# bh.insert(-1)
+# print("heap", bh.heap)
+# bh.delMin()
+# print("heap2", bh.heap)
+# list2 = [33, -2, 4, 7890]
+# bh.buildHeap(list2)
+# print("heap3", bh.heap)
 
 
 #=====================================================================================================================
@@ -340,11 +344,11 @@ class HashTable:
 				nextslot = self.rehash(hashvalue,len(self.slots))
 				while self.slots[nextslot] != None and self.slots[nextslot] != key:
 					nextslot = self.rehash(nextslot,len(self.slots))
-					if self.slots[nextslot] == None:
-						self.slots[nextslot]=key
-						self.data[nextslot]=data
-					else:
-						self.data[nextslot] = data #replace
+				if self.slots[nextslot] == None:
+					self.slots[nextslot]=key
+					self.data[nextslot]=data
+				else:
+					self.data[nextslot] = data #replace
 	def hashfunction(self,key,size):
 		return key%size
 	def rehash(self,oldhash,size):
@@ -368,3 +372,31 @@ class HashTable:
 		return self.get(key)
 	def __setitem__(self,key,data):
 		self.put(key,data)
+
+H=HashTable()
+H[54]="cat"
+H[26]="dog"
+H[93]="lion"
+H[17]="tiger"
+H[77]="bird"
+H[31]="cow"
+H[44]="goat"
+H[55]="pig"
+H[20]="chicken"
+print(H.slots)
+# [77, 44, 55, 20, 26, 93, 17, None, None, 31, 54]
+print(H.data)
+# ['bird', 'goat', 'pig', 'chicken', 'dog', 'lion','tiger', None, None, 'cow', 'cat']
+
+print(H[20])
+# 'chicken'
+print(H[17])
+# 'tiger'
+H[20]='duck'
+print(H[20])
+# 'duck'
+print(H.data)
+['bird', 'goat', 'pig', 'duck', 'dog', 'lion',
+       'tiger', None, None, 'cow', 'cat']
+print(H[99])
+None
