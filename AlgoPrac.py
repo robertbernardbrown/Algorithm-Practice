@@ -203,6 +203,19 @@ arrayUse = [-33, 900, 5, 22, 20, -5, 17, 55, 52, 5]
 
 # selectionSort(arrayUse)
 
+# def selectionSort(alist):
+# 	for outerLoop in range(len(alist) - 1, 0, -1):
+# 		maxRef = 0
+# 		for innerLoop in range(0, outerLoop + 1):
+# 			if alist[innerLoop] > alist[maxRef]:
+# 				maxRef = innerLoop
+# 		temp = alist[maxRef]
+# 		alist[maxRef] = alist[outerLoop]
+# 		alist[outerLoop] = temp
+# 	print(alist)
+
+# selectionSort(arrayUse)
+
 #=====================================================================================================================
 #HEAP
 #=====================================================================================================================
@@ -300,7 +313,7 @@ class binHeap4:
 		self.heapSize = self.heapSize + 1
 		self.percUp(self.heapSize)
 	def percDown (self, i):
-		while i * 2 < self.heapSize:
+		while i * 2 <= self.heapSize:
 			mc = self.minChild(i)
 			if self.heap[i] > self.heap[mc]:
 				temp = self.heap[i]
@@ -308,13 +321,13 @@ class binHeap4:
 				self.heap[mc] = temp
 			i = mc
 	def minChild (self, i):
-		if i * 2 + 1 < self.heapSize:
+		if i * 2 + 1 > self.heapSize:
 			return i * 2
 		else:
-			if self.heap[i*2] < self.heap[i*2+1]:
-				return i * 2
-			else:
+			if self.heap[i*2+1] < self.heap[i*2]:
 				return i * 2 + 1
+			else:
+				return i * 2
 	def delMin (self):
 		retVal = self.heap[1]
 		self.heap[1] = self.heap[self.heapSize]
@@ -322,8 +335,8 @@ class binHeap4:
 		self.heap.pop()
 		self.percDown(1)
 		return retVal
-	def buildHeap (self, alist):
-		i = len(alist) // 2
+	def buildHeap(self, alist):
+		i = len(alist)
 		self.heap = [0] + alist[:]
 		self.heapSize = len(alist)
 		while i > 0:
