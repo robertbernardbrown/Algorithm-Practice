@@ -164,6 +164,45 @@ arrayUse = [-33, 900, 5, 22, 20, -5, 17, 55, 52, 5]
 
 # selectionSort(arrayUse)
 
+# def selectionSort(alist):
+# 	for outerLoop in range(len(alist) - 1, 0, -1):
+# 		maxRef = 0
+# 		for innerLoop in range(0, outerLoop + 1):
+# 			if alist[innerLoop] > alist[maxRef]:
+# 				maxRef = innerLoop
+# 		temp = alist[outerLoop]
+# 		alist[outerLoop] = alist[maxRef]
+# 		alist[maxRef] = temp
+# 	print(alist)
+
+# selectionSort(arrayUse)
+
+# def selectionSort(alist):
+# 	for outerLoop in range(len(alist) - 1, 0, -1):
+# 		maxRef = 0
+# 		for innerLoop in range(0, outerLoop + 1):
+# 			if alist[maxRef] < alist[innerLoop]:
+# 				maxRef = innerLoop
+# 		temp = alist[outerLoop]
+# 		alist[outerLoop] = alist[maxRef]
+# 		alist[maxRef] = temp
+# 	print(alist)
+
+# selectionSort(arrayUse)
+
+# def selectionSort(alist):
+# 	for outerLoop in range(len(alist) -1, 0, -1):
+# 		maxRef = 0
+# 		for innerLoop in range(0, outerLoop+1):
+# 			if alist[maxRef] < alist[innerLoop]:
+# 				maxRef = innerLoop
+# 		temp = alist[outerLoop]
+# 		alist[outerLoop] = alist[maxRef]
+# 		alist[maxRef] = temp
+# 	print(alist)
+
+# selectionSort(arrayUse)
+
 #=====================================================================================================================
 #HEAP
 #=====================================================================================================================
@@ -173,18 +212,12 @@ class BinHeap:
 		self.heapList = []
 		self.currentSize = 0
 	def percUp(self, i):
-		print(self.heapList)
-		print("size of array: ", i)
-		print("size of array//2: ", i//2)
 		while i // 2 > 0:
-			print("index at size: ", self.heapList[i], "index at half size: ", self.heapList[i // 2])
 			if self.heapList[i] < self.heapList[i // 2]:
 				tmp = self.heapList[i // 2]
 				self.heapList[i // 2] = self.heapList[i]
 				self.heapList[i] = tmp
-				print("heapList after swap: ", self.heapList) 
 			i = i // 2
-			print("new i: ", i)
 	def insert(self, k):
 		self.heapList.append(k)
 		self.currentSize = self.currentSize + 1
@@ -252,36 +285,36 @@ class BinHeap:
 # 			i = i // 2
 
 class binHeap4:
-	def __init__(self):
+	def __init__ (self):
 		self.heap = [0]
 		self.heapSize = 0
-	def percUp(self, i):
+	def percUp (self, i):
 		while i // 2 > 0:
 			if self.heap[i] < self.heap[i//2]:
 				temp = self.heap[i]
 				self.heap[i] = self.heap[i//2]
 				self.heap[i//2] = temp
 			i = i // 2
-	def insert(self, k):
-		self.heap.append(k)
+	def insert (self, i):
+		self.heap.append(i)
 		self.heapSize = self.heapSize + 1
 		self.percUp(self.heapSize)
-	def percDown(self, i):
-		while i * 2 <= self.heapSize:
+	def percDown (self, i):
+		while i * 2 < self.heapSize:
 			mc = self.minChild(i)
 			if self.heap[i] > self.heap[mc]:
 				temp = self.heap[i]
 				self.heap[i] = self.heap[mc]
 				self.heap[mc] = temp
 			i = mc
-	def minChild(self, i):
-		if i * 2 + 1 > self.heapSize:
+	def minChild (self, i):
+		if i * 2 + 1 < self.heapSize:
 			return i * 2
 		else:
-			if self.heap[1*2] > self.heap[i*2+1]:
-				return self.heap[i*2+1]
+			if self.heap[i*2] < self.heap[i*2+1]:
+				return i * 2
 			else:
-				return self.heap[i*2]
+				return i * 2 + 1
 	def delMin (self):
 		retVal = self.heap[1]
 		self.heap[1] = self.heap[self.heapSize]
@@ -297,6 +330,7 @@ class binHeap4:
 			self.percDown(i)
 			i = i - 1
 		return self.heapSize
+
 
 bh = binHeap4()
 bh.insert(2)
