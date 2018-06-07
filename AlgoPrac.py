@@ -251,18 +251,18 @@ class BinHeap:
 # 				self.heap[i] = temp
 # 			i = i // 2
 
-class binHeap2:
+class binHeap4:
 	def __init__(self):
 		self.heap = [0]
 		self.heapSize = 0
-	def percUp (self, i):
+	def percUp(self, i):
 		while i // 2 > 0:
 			if self.heap[i] < self.heap[i//2]:
 				temp = self.heap[i]
 				self.heap[i] = self.heap[i//2]
 				self.heap[i//2] = temp
 			i = i // 2
-	def insert (self, k):
+	def insert(self, k):
 		self.heap.append(k)
 		self.heapSize = self.heapSize + 1
 		self.percUp(self.heapSize)
@@ -278,77 +278,27 @@ class binHeap2:
 		if i * 2 + 1 > self.heapSize:
 			return i * 2
 		else:
-			if self.heap[i*2+1] < self.heap[i*2]:
-				return i*2+1
-			else:
-				return i*2
-	def delMin(self):
-		retVal = self.heap[1]
-		self.heap[1] = self.heap[self.heapSize]
-		self.heapSize = self.heapSize - 1
-		self.heap.pop()
-		self.percDown(1)
-		return retVal
-	def buildHeap(self, alist):
-		i = len(alist) // 2
-		self.heap = [0] + alist[:]
-		self.heapSize = len(alist)
-		while i > 0:
-			self.percDown(i)
-			i = i - 1
-		return self.heapSize
-
-
-
-class binHeap3:
-	def __init__(self):
-		self.heap = [0]
-		self.heapSize = 0
-	def percUp(self, i):
-		while i // 2 > 0:
-			if self.heap[i] < self.heap[i//2]:
-				temp = self.heap[i]
-				self.heap[i] = self.heap[i//2]
-				self.heap[i//2] = temp
-			i = i//2
-	def insert(self, k):
-		self.heap.append(k)
-		self.heapSize = self.heapSize + 1
-		self.percUp(self.heapSize)
-	def percDown(self, i):
-		while i * 2 > 0:
-			mc = self.minChild(i)
-			if self.heap[i] > self.heap[mc]:
-				temp = self.heap[i]
-				self.heap[i] = self.heap[mc]
-				self.heap[mc] = temp
-			i = mc
-	def minChild(self, i):
-		if i * 2 + 1 < self.heapSize:
-			return i * 2
-		else:
-			if self.heap[i*2] < self.heap[i*2+1]:
-				return self.heap[i*2]
-			else:
+			if self.heap[1*2] > self.heap[i*2+1]:
 				return self.heap[i*2+1]
-	def delMin(self):
+			else:
+				return self.heap[i*2]
+	def delMin (self):
 		retVal = self.heap[1]
 		self.heap[1] = self.heap[self.heapSize]
 		self.heapSize = self.heapSize - 1
 		self.heap.pop()
 		self.percDown(1)
 		return retVal
-	def buildHeap(self, alist):
+	def buildHeap (self, alist):
 		i = len(alist) // 2
-		self.heapSize = len(alist)
 		self.heap = [0] + alist[:]
+		self.heapSize = len(alist)
 		while i > 0:
 			self.percDown(i)
 			i = i - 1
 		return self.heapSize
 
-
-bh = binHeap3()
+bh = binHeap4()
 bh.insert(2)
 bh.insert(3)
 bh.insert(80)
