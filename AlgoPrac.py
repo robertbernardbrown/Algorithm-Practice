@@ -240,6 +240,17 @@ arrayUse = [-33, 900, 5, 22, 20, -5, 17, 55, 52, 5]
 # 		alist[outerLoop] = temp
 # 	print(alist)
 
+# def selectionSort(alist):
+# 	for outerLoop in range(len(alist) -1, 0, -1):
+# 		maxRef = 0
+# 		for innerLoop in range(0, outerLoop+1):
+# 			if alist[maxRef] < alist[innerLoop]:
+# 				maxRef = innerLoop
+# 		temp = alist[maxRef]
+# 		alist[maxRef] = alist[outerLoop]
+# 		alist[outerLoop] = temp
+# 	print(alist)
+
 # selectionSort(arrayUse)
 
 #=====================================================================================================================
@@ -327,7 +338,7 @@ class binHeap4:
 	def __init__(self):
 		self.heap = [0]
 		self.heapSize = 0
-	def percUp (self, i):
+	def percUp(self, i):
 		while i // 2 > 0:
 			if self.heap[i] < self.heap[i//2]:
 				temp = self.heap[i]
@@ -338,27 +349,26 @@ class binHeap4:
 		self.heap.append(i)
 		self.heapSize = self.heapSize + 1
 		self.percUp(self.heapSize)
-	def percDown (self, i):
-		while i * 2 <= self.heapSize:
+	def percDown(self, i):
+		while i * 2 < self.heapSize:
 			mc = self.minChild(i)
 			if self.heap[mc] < self.heap[i]:
-				temp = self.heap[i]
-				self.heap[i] = self.heap[mc]
-				self.heap[mc] = temp
+				temp = self.heap[mc]
+				self.heap[mc] = self.heap[i]
+				self.heap[i] = temp
 			i = mc
-	def minChild (self, i):
-		if i * 2 + 1 > self.heapSize:
+	def minChild(self, i):
+		if i * 2 + 1 < self.heapSize:
 			return i * 2
 		else:
-			if self.heap[i*2+1] < self.heap[i*2]:
-				return i * 2 + 1
-			else:
+			if self.heap[i*2] < self.heap[i*2+1]:
 				return i * 2
+			else:
+				return i * 2 + 1
 	def delMin(self):
 		retVal = self.heap[1]
-		self.heap[1] = self.heap[self.heapSize]
-		self.heapSize = self.heapSize - 1
 		self.heap.pop()
+		self.heapSize = self.heapSize - 1
 		self.percDown(1)
 		return retVal
 	def buildHeap(self, alist):
@@ -370,17 +380,17 @@ class binHeap4:
 			i = i - 1
 		return self.heapSize
 
-# bh = binHeap4()
-# bh.insert(2)
-# bh.insert(3)
-# bh.insert(80)
-# bh.insert(-1)
-# print("heap", bh.heap)
-# bh.delMin()
-# print("heap2", bh.heap)
-# list2 = [33, -2, 4, 7890]
-# bh.buildHeap(list2)
-# print("heap3", bh.heap)
+bh = binHeap4()
+bh.insert(2)
+bh.insert(3)
+bh.insert(80)
+bh.insert(-1)
+print("heap", bh.heap)
+bh.delMin()
+print("heap2", bh.heap)
+list2 = [33, -2, 4, 7890]
+bh.buildHeap(list2)
+print("heap3", bh.heap)
 
 
 #=====================================================================================================================
@@ -526,51 +536,6 @@ class HashMap:
 			if item is not None:
 				print(str(item))
 
-class HashMap2:
-	def __init__(self):
-		self.size = 6
-		self.map = [None] * self.size
-	def _get_hash(self, key):
-		hash = 0
-		for char in str(key):
-			hash += ord(char)
-		return hash % self.size
-	def add(self, key, value):
-		key_hash = self._get_hash(key)
-		key_value = [key, value]
-
-		if self.map[key_hash] is None:
-			self.map[key_hash] = list ([key_value])
-			return True
-		else:
-			for pair in self.map[key_hash]:
-				if pair[0] == key:
-					pair[1] = value
-					return True
-			self.map[key_hash].append(key_value)
-			return True
-	def get(self, key):
-		key_hash = self._get_hash(key)
-		if self.map[key_hash] is not None:
-			for pair in self.map[key_hash]:
-				if pair[0] == key:
-					return pair[1]
-		return None
-	def delete(self, key):
-		key_hash = self._get_hash(key)
-		if self.map[key_hash] is None:
-			return False
-		for i in range(0, len(self.map[key_hash])):
-			if self.map[key_hash][i][0] == key:
-				self.map[key_hash].pop(i)
-				return True
-		return False
-	def printIt(self):
-		print('--print--')
-		for item in self.map:
-			if item is not None:
-				print(str(item))
-			
 h = HashMap2()
 h.add('Bob', '567-8888')
 h.add('Ming', '293-6753')
@@ -584,3 +549,47 @@ h.printIt()
 h.delete('Bob')
 h.printIt()
 print('Ming: ' + h.get('Ming'))
+print(h.get('Ankit'))
+
+
+# I would classify the following data structures as **must know**
+# ============================================================================
+# Linked List - Single and Doubly
+# Stack
+# Queues
+# Binary Search Trees or general Binary Tree
+# Heaps
+# Basic Graph Traversal and Shortest Path
+# Hashing
+
+# Following data structures may be asked. I would say that their probability of being asked is between 50 to 75% -
+# ============================================================================
+# Tries
+# Advance Graphs like flow and min-cut etc.
+# Bit Manipulation
+# You will probably crack interviews with sufficient knowledge of above.
+
+# Following have very low probability of being asked ( < 25%) :
+# ============================================================================
+# Segment Trees / Binary Indexed Trees
+# AVL Trees
+# B+ Trees
+# Other hard data structures are absolutely unnecessary.
+
+# Following Algorithms / Tricks / Topics may also be important :
+# ============================================================================
+# Memory Management
+# Basic Co-ordinate geometry - Manhattan Distance, Closest Point Pair
+# Divide and Conquer
+# Greedy
+# Dynamic Programming - Extremely important
+# Probability and basic Number Theory
+# Sorting and Searching
+
+# Following topics is important for Knowledge / Experience based questions :
+# ============================================================================
+# OS - Threads, Processes and Locks using Mutex, Semaphores (Operating systems Archives - GeeksforGeeks)
+# Scalability Issues, RPCs, Rate limiter, etc.
+# OOP Concepts
+# Databases - SQL, NoSQL, Writing simple Queries, Transactions, ACID
+# Linux Commands - sed, grep, ps, etc.
