@@ -554,7 +554,7 @@ class HashMap:
 class HashMap2:
 	def __init__(self):
 		self.mapSize = 6
-		self.map = self.mapSize * [None]
+		self.map = [None] * self.mapSize
 	def _get_hash(self, key):
 		hash = 0
 		for char in str(key):
@@ -565,6 +565,7 @@ class HashMap2:
 		key_value = [key, value]
 		if self.map[key_hash] is None:
 			self.map[key_hash] = list([key_value])
+			return True
 		else:
 			for pair in self.map[key_hash]:
 				if pair[0] == key:
@@ -572,6 +573,13 @@ class HashMap2:
 					return True
 			self.map[key_hash].append(key_value)
 			return True
+	def get(self, key):
+		key_hash = self._get_hash(key)
+		if self.map[key_hash] is not None:
+			for pair in self.map[key_hash]:
+				if pair[0] == key:
+					return pair[1]
+		return None
 	def delete(self, key):
 		key_hash = self._get_hash(key)
 		if self.map[key_hash] is None:
@@ -581,13 +589,6 @@ class HashMap2:
 				self.map[key_hash].pop(i)
 				return True
 		return False
-	def get(self, key):
-		key_hash = self._get_hash(key)
-		if self.map[key_hash] is not None:
-			for pair in self.map[key_hash]:
-				if pair[0] == key:
-					return pair[1]
-		return None
 	def printHash(self):
 		for item in self.map:
 			if item is not None:
@@ -601,9 +602,9 @@ h.add('Ankit', '293-8625')
 h.add('Aditya', '852-6551')
 h.add('Alicia', '632-4123')
 h.add('Mike', '567-2188')
-h.add('Aditya', '777-8888')
 h.printHash()		
 h.delete('Bob')
+h.add('Aditya', '777-8888')
 h.printHash()
 print('Ming: ', h.get('Ming'))
 print(h.get('Ankit'))
