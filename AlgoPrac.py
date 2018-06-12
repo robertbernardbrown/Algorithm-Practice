@@ -253,6 +253,19 @@ arrayUse = [-33, 900, 5, 22, 20, -5, 17, 55, 52, 5]
 
 # selectionSort(arrayUse)
 
+def selectionSort(alist):
+	for outerLoop in range(len(alist)-1, 0, -1):
+		maxRef = 0
+		for innerLoop in range(0, outerLoop+1):
+			if alist[innerLoop] > alist[maxRef]:
+				maxRef = innerLoop
+		temp = alist[maxRef]
+		alist[maxRef] = alist[outerLoop]
+		alist[outerLoop] = temp
+	print(alist)
+
+selectionSort(arrayUse)
+
 #=====================================================================================================================
 #HEAP
 #=====================================================================================================================
@@ -345,20 +358,20 @@ class binHeap4:
 				self.heap[i] = self.heap[i//2]
 				self.heap[i//2] = temp
 			i = i // 2
-	def insert (self, i):
+	def insert(self, i):
 		self.heap.append(i)
-		self.heapSize = self.heapSize + 1
+		self.heapSize += 1
 		self.percUp(self.heapSize)
 	def percDown(self, i):
-		while i * 2 < self.heapSize:
+		while i * 2 <= self.heapSize:
 			mc = self.minChild(i)
-			if self.heap[mc] < self.heap[i]:
-				temp = self.heap[mc]
-				self.heap[mc] = self.heap[i]
-				self.heap[i] = temp
+			if self.heap[i] > self.heap[mc]:
+				temp = self.heap[i]
+				self.heap[i] = self.heap[mc]
+				self.heap[mc] = temp
 			i = mc
 	def minChild(self, i):
-		if i * 2 + 1 < self.heapSize:
+		if i * 2 + 1 > self.heapSize:
 			return i * 2
 		else:
 			if self.heap[i*2] < self.heap[i*2+1]:
@@ -367,6 +380,7 @@ class binHeap4:
 				return i * 2 + 1
 	def delMin(self):
 		retVal = self.heap[1]
+		self.heap[1] = self.heap[self.heapSize]
 		self.heap.pop()
 		self.heapSize = self.heapSize - 1
 		self.percDown(1)
@@ -535,6 +549,51 @@ class HashMap:
 		for item in self.map:
 			if item is not None:
 				print(str(item))
+
+
+class HashMap2:
+	def __init__(self):
+		self.size = 6
+		self.map = [None] * self.size
+	def _get_hash(self, key):
+		hash = 0
+		for char in str(key):
+			hash += ord(char)
+		return hash % self.size
+	def add(self, key, value):
+		key_hash = self._get_hash(key)
+		key_value = [key, value]
+		if self.map[key_hash] is None:
+			self.map[key_hash] = list([key_value])
+			return True
+		else:
+			for pair in self.map[key_hash]:
+				if pair[0] == key:
+					pair[1] = value
+					return True
+			self.map[key_hash].append(key)
+			return True
+	def get(self, key):
+		key_hash = self._get_hash(key)
+		if self.map[key_hash] is not None:
+			for pair in self.map[key_hash]:
+				if pair[0] == key:
+					return pair[1]
+		return None
+	def delete(self, key):
+		key_hash = self._get_hash(key)
+		if self.map[key_hash] is None:
+			return False
+		for i in range(0, len(self.map[key_hash])):
+			if self.map[key_hash][i][0] == key:
+				self.map[key_hash].pop(i)
+				return True
+		return False
+	def printIt(self):
+		for key in self.map:
+			if key is not None:
+				print(str(key))
+			
 
 h = HashMap2()
 h.add('Bob', '567-8888')
