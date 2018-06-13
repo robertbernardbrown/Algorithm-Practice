@@ -565,7 +565,6 @@ class HashMap2:
 		key_value = [key, value]
 		if self.map[key_hash] is None:
 			self.map[key_hash] = list([key_value])
-			return True
 		else:
 			for pair in self.map[key_hash]:
 				if pair[0] == key:
@@ -584,11 +583,12 @@ class HashMap2:
 		key_hash = self._get_hash(key)
 		if self.map[key_hash] is None:
 			return False
-		for i in range(0, len(self.map[key_hash])):
-			if self.map[key_hash][i][0] == key:
-				self.map[key_hash].pop(i)
-				return True
-		return False
+		else:
+			for i in range(0, len(self.map[key_hash])):
+				if self.map[key_hash][i][0] == key:
+					self.map[key_hash].pop(i)
+					return True
+			return False
 	def printHash(self):
 		for item in self.map:
 			if item is not None:
