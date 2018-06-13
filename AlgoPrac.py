@@ -374,15 +374,15 @@ class binHeap4:
 		if i * 2 + 1 > self.heapSize:
 			return i * 2
 		else:
-			if self.heap[i*2] < self.heap[i*2+1]:
+			if self.heap[i * 2] < self.heap[i * 2 + 1]:
 				return i * 2
 			else:
 				return i * 2 + 1
 	def delMin(self):
 		retVal = self.heap[1]
 		self.heap[1] = self.heap[self.heapSize]
-		self.heap.pop()
 		self.heapSize = self.heapSize - 1
+		self.heap.pop()
 		self.percDown(1)
 		return retVal
 	def buildHeap(self, alist):
@@ -608,6 +608,14 @@ h.add('Aditya', '777-8888')
 h.printHash()
 print('Ming: ', h.get('Ming'))
 print(h.get('Ankit'))
+
+#=====================================================================================================================
+#MERGE SORT
+#=====================================================================================================================
+
+#=====================================================================================================================
+#QUICKSORT
+#=====================================================================================================================
 
 
 # I would classify the following data structures as **must know**

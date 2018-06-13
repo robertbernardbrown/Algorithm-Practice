@@ -24,7 +24,22 @@ function selectionSort(numbers) {
     }
     return numbers;
 }
-// selectionSort(arrayUse);
+
+function selectionSort2(array){
+  for (var i = array.length-1; i > 0; i--) {
+    var maxRef = 0;
+    for (var k = 0; k <= i; k++) {
+      if (array[maxRef] < array[k]){
+        maxRef = k
+      }
+    }
+    temp = array[i]
+    array[i] = array[maxRef]
+    array[maxRef] = temp
+  }
+  console.log(array)
+}
+selectionSort2(arrayUse);
 
 
 //NOTES
