@@ -366,15 +366,15 @@ class binHeap4:
 		while i * 2 <= self.heapSize:
 			mc = self.minChild(i)
 			if self.heap[i] > self.heap[mc]:
-				temp = self.heap[i]
-				self.heap[i] = self.heap[mc]
-				self.heap[mc] = temp
+				temp = self.heap[mc]
+				self.heap[mc] = self.heap[i]
+				self.heap[i] = temp
 			i = mc
 	def minChild(self, i):
 		if i * 2 + 1 > self.heapSize:
 			return i * 2
-		else:
-			if self.heap[i * 2] < self.heap[i * 2 + 1]:
+		else: 
+			if self.heap[i*2] < self.heap[i*2+1]:
 				return i * 2
 			else:
 				return i * 2 + 1
@@ -560,18 +560,6 @@ class HashMap2:
 		for char in str(key):
 			hash += ord(char)
 		return hash % self.mapSize
-	def add(self, key, value):
-		key_hash = self._get_hash(key)
-		key_value = [key, value]
-		if self.map[key_hash] is None:
-			self.map[key_hash] = list([key_value])
-		else:
-			for pair in self.map[key_hash]:
-				if pair[0] == key:
-					pair[1] = value
-					return True
-			self.map[key_hash].append(key_value)
-			return True
 	def get(self, key):
 		key_hash = self._get_hash(key)
 		if self.map[key_hash] is not None:
@@ -579,16 +567,27 @@ class HashMap2:
 				if pair[0] == key:
 					return pair[1]
 		return None
+	def add(self, key, value):
+		key_hash = self._get_hash(key)
+		key_value = [key, value]
+		if self.map[key_hash] is None:
+			self.map[key_hash] = list([key_value])
+			return True
+		else:
+			for pair in self.map[key_hash]:
+				if pair[0] == key:
+					pair[1] = value
+					return True
+			self.map[key_hash].append(key_value)
+			return True
 	def delete(self, key):
 		key_hash = self._get_hash(key)
 		if self.map[key_hash] is None:
 			return False
-		else:
-			for i in range(0, len(self.map[key_hash])):
-				if self.map[key_hash][i][0] == key:
-					self.map[key_hash].pop(i)
-					return True
-			return False
+		for i in range(0, len(self.map[key_hash])):
+			if self.map[key_hash][i][0] == key:
+				self.map[key_hash].pop(i)
+				return True
 	def printHash(self):
 		for item in self.map:
 			if item is not None:
@@ -656,18 +655,18 @@ print(alist)
 #=====================================================================================================================
 
 def quickSort(alist):
-   quickSortHelper(alist,0,len(alist)-1)
+	quickSortHelper(alist,0,len(alist)-1)
 
 def quickSortHelper(alist,first,last):
-   if first<last:
-
-       splitpoint = partition(alist,first,last)
-
-       quickSortHelper(alist,first,splitpoint-1)
-       quickSortHelper(alist,splitpoint+1,last)
+	print("quicksort", alist, first, last)
+	if first<last:
+		splitpoint = partition(alist,first,last)
+		quickSortHelper(alist,first,splitpoint-1)
+		quickSortHelper(alist,splitpoint+1,last)
 
 
 def partition(alist,first,last):
+   print("partition", alist, first, last)
    pivotvalue = alist[first]
 
    leftmark = first+1
@@ -698,7 +697,7 @@ def partition(alist,first,last):
 
 alist = [54,26,93,17,77,31,44,55,20]
 quickSort(alist)
-print(alist)
+print("quick: ", alist)
 
 # I would classify the following data structures as **must know**
 # ============================================================================
