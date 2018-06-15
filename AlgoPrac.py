@@ -566,12 +566,13 @@ class HashMap2:
 		if self.map[key_hash] is None:
 			self.map[key_hash] = list([key_value])
 			return True
-		for pair in self.map[key_hash]:
-			if pair[0] == key:
-				pair[1] = value
-				return True
-		self.map[key_hash].append(key_value)
-		return True
+		else:
+			for pair in self.map[key_hash]:
+				if pair[0] == key:
+					pair[1] = value
+					return True
+			self.map[key_hash].append(key_value)
+			return True
 	def get(self, key):
 		key_hash = self._get_hash(key)
 		if self.map[key_hash] is not None:
