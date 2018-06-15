@@ -264,7 +264,7 @@ def selectionSort(alist):
 		alist[outerLoop] = temp
 	print(alist)
 
-selectionSort(arrayUse)
+# selectionSort(arrayUse)
 
 #=====================================================================================================================
 #HEAP
@@ -394,17 +394,17 @@ class binHeap4:
 			i = i - 1
 		return self.heapSize
 
-bh = binHeap4()
-bh.insert(2)
-bh.insert(3)
-bh.insert(80)
-bh.insert(-1)
-print("heap", bh.heap)
-bh.delMin()
-print("heap2", bh.heap)
-list2 = [33, -2, 4, 7890]
-bh.buildHeap(list2)
-print("heap3", bh.heap)
+# bh = binHeap4()
+# bh.insert(2)
+# bh.insert(3)
+# bh.insert(80)
+# bh.insert(-1)
+# print("heap", bh.heap)
+# bh.delMin()
+# print("heap2", bh.heap)
+# list2 = [33, -2, 4, 7890]
+# bh.buildHeap(list2)
+# print("heap3", bh.heap)
 
 
 #=====================================================================================================================
@@ -594,20 +594,20 @@ class HashMap2:
 			if item is not None:
 				print(str(item))
 
-h = HashMap2()
-h.add('Bob', '567-8888')
-h.add('Ming', '293-6753')
-h.add('Ming', '333-8233')
-h.add('Ankit', '293-8625')
-h.add('Aditya', '852-6551')
-h.add('Alicia', '632-4123')
-h.add('Mike', '567-2188')
-h.printHash()		
-h.delete('Bob')
-h.add('Aditya', '777-8888')
-h.printHash()
-print('Ming: ', h.get('Ming'))
-print(h.get('Ankit'))
+# h = HashMap2()
+# h.add('Bob', '567-8888')
+# h.add('Ming', '293-6753')
+# h.add('Ming', '333-8233')
+# h.add('Ankit', '293-8625')
+# h.add('Aditya', '852-6551')
+# h.add('Alicia', '632-4123')
+# h.add('Mike', '567-2188')
+# h.printHash()		
+# h.delete('Bob')
+# h.add('Aditya', '777-8888')
+# h.printHash()
+# print('Ming: ', h.get('Ming'))
+# print(h.get('Ankit'))
 
 #=====================================================================================================================
 #MERGE SORT
@@ -646,10 +646,19 @@ def mergeSort(alist):
             k=k+1
     print("Merging ",alist)
 
+import time
+import random
+
+# data = range(0, 100000)
+# random.shuffle(data)
+
+t0 = time.time()
 alist = [54,26,93,17,77,31,44,55,20]
 mergeSort(alist)
-print(alist)
+# print(data)
+t1 = time.time()
 
+total = t1-t0
 
 #=====================================================================================================================
 #QUICKSORT
@@ -697,8 +706,8 @@ def partition(alist,first,last):
    return rightmark
 
 alist = [54,26,93,17,77,31,44,55,20]
-quickSort(alist)
-print("quick: ", alist)
+# quickSort(alist)
+# print("quick: ", alist)
 
 # I would classify the following data structures as **must know**
 # ============================================================================
