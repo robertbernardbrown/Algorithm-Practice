@@ -257,14 +257,15 @@ def selectionSort(alist):
 	for outerLoop in range(len(alist)-1, 0, -1):
 		maxRef = 0
 		for innerLoop in range(0, outerLoop+1):
-			if alist[innerLoop] > alist[maxRef]:
+			if alist[maxRef] < alist[innerLoop]:
 				maxRef = innerLoop
-		temp = alist[maxRef]
-		alist[maxRef] = alist[outerLoop]
-		alist[outerLoop] = temp
-	print(alist)
+			temp = alist[maxRef]
+			alist[maxRef] = alist[outerLoop]
+			alist[outerLoop] = temp
+	return alist
 
 # selectionSort(arrayUse)
+# print(arrayUse)
 
 #=====================================================================================================================
 #HEAP
@@ -365,7 +366,7 @@ class binHeap4:
 	def percDown(self, i):
 		while i * 2 <= self.heapSize:
 			mc = self.minChild(i)
-			if self.heap[i] > self.heap[mc]:
+			if self.heap[mc] < self.heap[i]:
 				temp = self.heap[mc]
 				self.heap[mc] = self.heap[i]
 				self.heap[i] = temp
@@ -373,7 +374,7 @@ class binHeap4:
 	def minChild(self, i):
 		if i * 2 + 1 > self.heapSize:
 			return i * 2
-		else: 
+		else:
 			if self.heap[i*2] < self.heap[i*2+1]:
 				return i * 2
 			else:
@@ -386,7 +387,7 @@ class binHeap4:
 		self.percDown(1)
 		return retVal
 	def buildHeap(self, alist):
-		i = len(alist) // 2
+		i = len(alist)//2
 		self.heap = [0] + alist[:]
 		self.heapSize = len(alist)
 		while i > 0:
@@ -594,20 +595,20 @@ class HashMap2:
 			if item is not None:
 				print(str(item))
 
-# h = HashMap2()
-# h.add('Bob', '567-8888')
-# h.add('Ming', '293-6753')
-# h.add('Ming', '333-8233')
-# h.add('Ankit', '293-8625')
-# h.add('Aditya', '852-6551')
-# h.add('Alicia', '632-4123')
-# h.add('Mike', '567-2188')
-# h.printHash()		
-# h.delete('Bob')
-# h.add('Aditya', '777-8888')
-# h.printHash()
-# print('Ming: ', h.get('Ming'))
-# print(h.get('Ankit'))
+h = HashMap2()
+h.add('Bob', '567-8888')
+h.add('Ming', '293-6753')
+h.add('Ming', '333-8233')
+h.add('Ankit', '293-8625')
+h.add('Aditya', '852-6551')
+h.add('Alicia', '632-4123')
+h.add('Mike', '567-2188')
+h.printHash()		
+h.delete('Bob')
+h.add('Aditya', '777-8888')
+h.printHash()
+print('Ming: ', h.get('Ming'))
+print(h.get('Ankit'))
 
 #=====================================================================================================================
 #MERGE SORT
@@ -650,11 +651,41 @@ import random
 
 t0 = time.time()
 alist = [54,26,93,17,77,31,44,55,20]
-mergeSort(alist)
+# mergeSort(alist)
 print(alist)
 t1 = time.time()
 
 total = t1-t0
+
+def mergesort2(alist):
+	if len(alist) > 1:
+		mid = len(alist)//2
+		lefthalf = alist[:mid]
+		righthalf = alist[mid:]
+		mergesort2(lefthalf)
+		mergesort2(righthalf)
+		i = 0
+		j = 0
+		k = 0
+		while i < len(lefthalf) and j < len(righthalf):
+			if lefthalf[i] < righthalf[j]:
+				alist[k] = lefthalf[i]
+				i = i + 1
+			else:
+				alist[k] = righthalf[j]
+				j = j + 1
+			k = k + 1
+		while i < len(lefthalf):
+			alist[k] = lefthalf[i]
+			i = i + 1
+			k = k + 1
+		while j < len(righthalf):
+			alist[k] = righthalf[j]
+			j = j + 1
+			k = k + 1
+
+mergesort2(alist)
+print(alist)
 
 #=====================================================================================================================
 #QUICKSORT
