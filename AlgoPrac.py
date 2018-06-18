@@ -595,20 +595,20 @@ class HashMap2:
 			if item is not None:
 				print(str(item))
 
-h = HashMap2()
-h.add('Bob', '567-8888')
-h.add('Ming', '293-6753')
-h.add('Ming', '333-8233')
-h.add('Ankit', '293-8625')
-h.add('Aditya', '852-6551')
-h.add('Alicia', '632-4123')
-h.add('Mike', '567-2188')
-h.printHash()		
-h.delete('Bob')
-h.add('Aditya', '777-8888')
-h.printHash()
-print('Ming: ', h.get('Ming'))
-print(h.get('Ankit'))
+# h = HashMap2()
+# h.add('Bob', '567-8888')
+# h.add('Ming', '293-6753')
+# h.add('Ming', '333-8233')
+# h.add('Ankit', '293-8625')
+# h.add('Aditya', '852-6551')
+# h.add('Alicia', '632-4123')
+# h.add('Mike', '567-2188')
+# h.printHash()		
+# h.delete('Bob')
+# h.add('Aditya', '777-8888')
+# h.printHash()
+# print('Ming: ', h.get('Ming'))
+# print(h.get('Ankit'))
 
 #=====================================================================================================================
 #MERGE SORT
@@ -657,34 +657,34 @@ t1 = time.time()
 
 total = t1-t0
 
-def mergesort2(alist):
+def mergeSort2(alist):
 	if len(alist) > 1:
 		mid = len(alist)//2
-		lefthalf = alist[:mid]
-		righthalf = alist[mid:]
-		mergesort2(lefthalf)
-		mergesort2(righthalf)
+		left = alist[:mid]
+		right = alist[mid:]
+		mergeSort2(left)
+		mergeSort2(right)
 		i = 0
 		j = 0
 		k = 0
-		while i < len(lefthalf) and j < len(righthalf):
-			if lefthalf[i] < righthalf[j]:
-				alist[k] = lefthalf[i]
+		while i < len(left) and j < len(right):
+			if left[i] < right[j]:
+				alist[k] = left[i]
 				i = i + 1
 			else:
-				alist[k] = righthalf[j]
+				alist[k] = right[j]
 				j = j + 1
 			k = k + 1
-		while i < len(lefthalf):
-			alist[k] = lefthalf[i]
+		while i < len(left):
+			alist[k] = left[i]
 			i = i + 1
 			k = k + 1
-		while j < len(righthalf):
-			alist[k] = righthalf[j]
+		while j < len(right):
+			alist[k] = right[j]
 			j = j + 1
 			k = k + 1
 
-mergesort2(alist)
+mergeSort2(alist)
 print(alist)
 
 #=====================================================================================================================
