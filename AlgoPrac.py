@@ -619,10 +619,8 @@ def mergeSort(alist):
         mid = len(alist)//2
         lefthalf = alist[:mid]
         righthalf = alist[mid:]
-
         mergeSort(lefthalf)
         mergeSort(righthalf)
-
         i=0
         j=0
         k=0
@@ -634,12 +632,10 @@ def mergeSort(alist):
                 alist[k]=righthalf[j]
                 j=j+1
             k=k+1
-
         while i < len(lefthalf):
             alist[k]=lefthalf[i]
             i=i+1
             k=k+1
-
         while j < len(righthalf):
             alist[k]=righthalf[j]
             j=j+1
@@ -655,7 +651,7 @@ import random
 t0 = time.time()
 alist = [54,26,93,17,77,31,44,55,20]
 mergeSort(alist)
-# print(data)
+print(alist)
 t1 = time.time()
 
 total = t1-t0
