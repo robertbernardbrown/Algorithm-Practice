@@ -725,35 +725,38 @@ def partition(alist,first,last):
 
 def quickSort2(alist):
 	quickSortHelper2(alist, 0, len(alist)-1)
+
 def quickSortHelper2(alist, first, last):
 	if first < last:
 		split = partition2(alist, first, last)
 		quickSortHelper2(alist, first, split-1)
-		quickSortHelper2(alist, split + 1, last)
+		quickSortHelper2(alist, split+1, last)
+
 def partition2(alist, first, last):
-	pivotValue = alist[first]
-	leftmark = first+1
-	rightmark = last
+	pivot = alist[first]
+	left = first+1
+	right = last
 	done = False
 	while not done:
-		while leftmark <= rightmark and alist[leftmark] <= pivotValue:
-			leftmark = leftmark + 1
-		while alist[rightmark] >= pivotValue and rightmark >=leftmark:
-			rightmark = rightmark - 1
-		if rightmark < leftmark:
+		while left <= right and alist[left] <= pivot:
+			left = left + 1
+		while right >= left and alist[right] >= pivot:
+			right = right - 1
+		if left > right:
 			done = True
 		else:
-			temp = alist[leftmark]
-			alist[leftmark] = alist[rightmark]
-			alist[rightmark] = temp
+			temp = alist[left]
+			alist[left] = alist[right]
+			alist[right] = temp
 	temp = alist[first]
-	alist[first] = alist[rightmark]
-	alist[rightmark] = temp
-	return rightmark
+	alist[first] = alist[right]
+	alist[right] = temp
+	return right
+	
 
-alist = [54,26,93,17,77,31,44,55,20]
-# quickSort(alist)
-# print("quick: ", alist)
+alist = [2,4,3,1]
+quickSort2(alist)
+print("quick: ", alist)
 
 # I would classify the following data structures as **must know**
 # ============================================================================
