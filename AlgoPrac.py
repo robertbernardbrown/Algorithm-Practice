@@ -257,12 +257,12 @@ def selectionSort(alist):
 	for outerLoop in range(len(alist)-1, 0, -1):
 		maxRef = 0
 		for innerLoop in range(0, outerLoop+1):
-			if alist[maxRef] < alist[innerLoop]:
+			if alist[innerLoop] > alist[maxRef]:
 				maxRef = innerLoop
-			temp = alist[maxRef]
-			alist[maxRef] = alist[outerLoop]
-			alist[outerLoop] = temp
-	return alist
+		temp = alist[maxRef]
+		alist[maxRef] = alist[outerLoop]
+		alist[outerLoop] = temp
+	print(alist)
 
 # selectionSort(arrayUse)
 # print(arrayUse)
@@ -366,7 +366,7 @@ class binHeap4:
 	def percDown(self, i):
 		while i * 2 <= self.heapSize:
 			mc = self.minChild(i)
-			if self.heap[mc] < self.heap[i]:
+			if self.heap[i] > self.heap[mc]:
 				temp = self.heap[mc]
 				self.heap[mc] = self.heap[i]
 				self.heap[i] = temp
@@ -387,7 +387,7 @@ class binHeap4:
 		self.percDown(1)
 		return retVal
 	def buildHeap(self, alist):
-		i = len(alist)//2
+		i = len(alist) // 2
 		self.heap = [0] + alist[:]
 		self.heapSize = len(alist)
 		while i > 0:
@@ -554,61 +554,61 @@ class HashMap:
 
 class HashMap2:
 	def __init__(self):
-		self.mapSize = 6
-		self.map = [None] * self.mapSize
+		self.hashSize = 6
+		self.hash = [None] * self.hashSize
 	def _get_hash(self, key):
 		hash = 0
-		for char in str(key):
+		for char in key:
 			hash += ord(char)
-		return hash % self.mapSize
+		return hash % self.hashSize
 	def add(self, key, value):
 		key_hash = self._get_hash(key)
 		key_value = [key, value]
-		if self.map[key_hash] is None:
-			self.map[key_hash] = list([key_value])
+		if self.hash[key_hash] is None:
+			self.hash[key_hash] = list([key_value])
 			return True
 		else:
-			for pair in self.map[key_hash]:
+			for pair in self.hash[key_hash]:
 				if pair[0] == key:
 					pair[1] = value
 					return True
-			self.map[key_hash].append(key_value)
+			self.hash[key_hash].append(key_value)
 			return True
 	def get(self, key):
 		key_hash = self._get_hash(key)
-		if self.map[key_hash] is not None:
-			for pair in self.map[key_hash]:
+		if self.hash[key_hash] is not None:
+			for pair in self.hash[key_hash]:
 				if pair[0] == key:
 					return pair[1]
 		return None
 	def delete(self, key):
 		key_hash = self._get_hash(key)
-		if self.map[key_hash] is None:
+		if self.hash[key_hash] is None:
 			return False
-		for i in range(0, len(self.map[key_hash])):
-			if self.map[key_hash][i][0] == key:
-				self.map[key_hash].pop(i)
+		for i in range(len(self.hash[key_hash])):
+			if self.hash[key_hash][i][0] == key:
+				self.hash[key_hash].pop(i)
 				return True
 		return False
 	def printHash(self):
-		for item in self.map:
+		for item in self.hash:
 			if item is not None:
 				print(str(item))
 
-# h = HashMap2()
-# h.add('Bob', '567-8888')
-# h.add('Ming', '293-6753')
-# h.add('Ming', '333-8233')
-# h.add('Ankit', '293-8625')
-# h.add('Aditya', '852-6551')
-# h.add('Alicia', '632-4123')
-# h.add('Mike', '567-2188')
-# h.printHash()		
-# h.delete('Bob')
-# h.add('Aditya', '777-8888')
-# h.printHash()
-# print('Ming: ', h.get('Ming'))
-# print(h.get('Ankit'))
+h = HashMap2()
+h.add('Bob', '567-8888')
+h.add('Ming', '293-6753')
+h.add('Ming', '333-8233')
+h.add('Ankit', '293-8625')
+h.add('Aditya', '852-6551')
+h.add('Alicia', '632-4123')
+h.add('Mike', '567-2188')
+h.printHash()		
+h.delete('Bob')
+h.add('Aditya', '777-8888')
+h.printHash()
+print('Ming: ', h.get('Ming'))
+print(h.get('Ankit'))
 
 #=====================================================================================================================
 #MERGE SORT
@@ -660,7 +660,7 @@ total = t1-t0
 def mergeSort2(alist):
 	if len(alist)>1:
 		mid = len(alist)//2
-		left = alist[:mid] 
+		left = alist[:mid]
 		right = alist[mid:]
 		mergeSort2(left)
 		mergeSort2(right)
@@ -685,7 +685,7 @@ def mergeSort2(alist):
 			k = k + 1
 
 mergeSort2(alist)
-print(alist)
+print("merge: ", alist)
 
 #=====================================================================================================================
 #QUICKSORT
@@ -725,16 +725,14 @@ def partition(alist,first,last):
 
 def quickSort2(alist):
 	quickSortHelper2(alist, 0, len(alist)-1)
-
 def quickSortHelper2(alist, start, end):
 	if start < end:
 		split = partition2(alist, start, end)
-		quickSortHelper2(alist, start, split - 1)
+		quickSortHelper2(alist, start, split-1)
 		quickSortHelper2(alist, split+1, end)
-
 def partition2(alist, start, end):
 	pivot = alist[start]
-	left = start + 1
+	left = start+1
 	right = end
 	done = False
 	while not done:
@@ -742,7 +740,7 @@ def partition2(alist, start, end):
 			left = left + 1
 		while alist[right] >= pivot and right >= left:
 			right = right - 1
-		if right < left:
+		if left > right:
 			done = True
 		else:
 			temp = alist[left]
@@ -752,6 +750,7 @@ def partition2(alist, start, end):
 	alist[start] = alist[right]
 	alist[right] = temp
 	return right
+
 	
 
 alist = [2,4,3,1]
