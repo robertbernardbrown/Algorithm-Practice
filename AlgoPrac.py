@@ -658,9 +658,9 @@ t1 = time.time()
 total = t1-t0
 
 def mergeSort2(alist):
-	if len(alist) > 1:
+	if len(alist)>1:
 		mid = len(alist)//2
-		left = alist[:mid]
+		left = alist[:mid] 
 		right = alist[mid:]
 		mergeSort2(left)
 		mergeSort2(right)

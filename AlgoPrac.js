@@ -956,3 +956,43 @@ function addElements(passedNum) {
 }
 
 console.log(userExecution(78));
+
+// Make a parking garage
+
+class Vehicle{
+  constructor(make, wheels, seats, passengers){
+    this.make = make;
+    this.wheels = wheels;
+    this.seats = seats;
+    this.passengers = passengers;
+  } 
+}
+
+class ParkingGarage{
+  constructor(){
+    this.capacity = 10;
+    this.load = [];
+    this.hourlyRate = 2;
+  }
+
+  earnings(hours){
+    return this.load.length * hours;
+  }
+
+  park(car){
+    if (this.load.length === this.capacity){
+      console.log("Not accepting any more cars right now!");
+    } else {
+      this.load.push(car);
+    }
+  }
+}
+
+var honda = new Vehicle("Honda", 4, 4, 3)
+var ford = new Vehicle("Ford", 4, 2, 2)
+console.log(honda)
+var garage = new ParkingGarage()
+garage.park(honda)
+garage.park(ford)
+
+console.log(garage.load)
