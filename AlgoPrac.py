@@ -727,18 +727,18 @@ def quickSort2(alist):
 	quickSortHelper2(alist, 0, len(alist)-1)
 def quickSortHelper2(alist, start, end):
 	if start < end:
-		split = partition2(alist, start, end)
-		quickSortHelper2(alist, start, split-1)
-		quickSortHelper2(alist, split+1, end)
+		partition = partition2(alist, start, end)
+		quickSortHelper2(alist, start, partition-1)
+		quickSortHelper2(alist, partition+1, end)
 def partition2(alist, start, end):
 	pivot = alist[start]
-	left = start+1
+	left = start + 1
 	right = end
 	done = False
 	while not done:
-		while alist[left] <= pivot and left <= right:
+		if left <= right and alist[left] <= pivot:
 			left = left + 1
-		while alist[right] >= pivot and right >= left:
+		if right >= left and alist[right] >= pivot:
 			right = right - 1
 		if left > right:
 			done = True
@@ -746,9 +746,9 @@ def partition2(alist, start, end):
 			temp = alist[left]
 			alist[left] = alist[right]
 			alist[right] = temp
-	temp = alist[start]
-	alist[start] = alist[right]
-	alist[right] = temp
+	temp = alist[right]
+	alist[right] = alist[start]
+	alist[start] = temp
 	return right
 
 	
