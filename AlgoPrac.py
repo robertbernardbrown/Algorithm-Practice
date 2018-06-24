@@ -750,7 +750,7 @@ def partition2(alist, start, end):
 	alist[right] = alist[start]
 	alist[start] = temp
 	return right
-
+ 
 	
 
 alist = [2,4,3,1]
@@ -798,3 +798,20 @@ print("quick: ", alist)
 # OOP Concepts
 # Databases - SQL, NoSQL, Writing simple Queries, Transactions, ACID
 # Linux Commands - sed, grep, ps, etc.
+
+#============================================
+#RECUSION PRAC
+#============================================
+
+def fibo(n):
+	if n >= 3:
+		print(n-1, n-2)
+		return fibo(n-1) + fibo(n-2)
+	else:
+		print("1!")
+		return 1
+
+def frogHop(feet):
+	stones = feet - 1
+	if feet = 0:
+		frogHop(feet)
