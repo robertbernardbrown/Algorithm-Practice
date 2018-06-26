@@ -749,7 +749,7 @@ def partition2(alist, start, end):
 	temp = alist[right]
 	alist[right] = alist[start]
 	alist[start] = temp
-	return right
+	return right 
  
 	
 
