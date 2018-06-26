@@ -1124,3 +1124,45 @@ console.log(b);
 console.log(c);
 console.log(a[b]);
 console.log(a[c]);
+
+function Traverse(p_element,p_callback) {
+  p_callback(p_element);
+  var list = p_element.children;
+  for (var i = 0; i < list.length; i++) {
+      Traverse(list[i],p_callback);  // recursive call
+  }
+}
+
+myArray = [1,2,3,4,5]
+myArray = ['start', ...myArray];
+myArray = [...myArray, 'end'];
+console.log(myArray);
+
+var b = [undefined];
+b[2] = 1;
+console.log(b);             // (3) [undefined, empty × 1, 1]
+console.log(b.map(e => 7));
+
+console.log(typeof undefined === typeof NULL)
+
+var b = 1;
+function outer(){
+   	var b = 2
+    function inner(){
+        b++;
+        var b = 3;
+        console.log(b)
+    }
+    inner();
+}
+outer();
+
+function addThis(x){
+  return function addThis2(y){
+    console.log(x+y);
+  }
+}
+
+var invokeAdd = addThis(2);
+
+invokeAdd(3);
