@@ -996,3 +996,131 @@ garage.park(honda)
 garage.park(ford)
 
 console.log(garage.load)
+
+function isInt(x){
+  if (typeof x === "number"){
+    console.log("number");
+  }
+  if (Number.isInteger(x)){
+    console.log("hi");
+  }
+  if (x !== x){
+    console.log("NaN");
+  }
+  if ((x ^ 0) === x){
+    console.log("monkey")
+  }
+}
+
+isInt(NaN)
+
+function isPalindrome(str) {
+  str = str.replace(/\W/g, '').toLowerCase();
+  console.log(str);
+  console.log(str === str.split('').reverse().join(''))
+  return (str === str.split('').reverse().join(''));
+}
+
+isPalindrome("A car, a man, a maraca");
+
+function add(x) {
+  return function(y){
+    console.log(x+y)
+    return x + y
+  };
+}
+
+add(2,3);
+
+//closure example
+
+function add(x){
+  function sumThis(y){
+    return x + y;
+  }
+  return sumThis;
+}
+
+var firstNum = add(2);
+console.log(firstNum);
+console.log(firstNum(3));
+
+function celebrityName (firstName) {
+  var nameIntro = "This celebrity is ";
+  // this inner function has access to the outer function's variables, including the parameter
+ function lastName (theLastName) {
+      return nameIntro + firstName + " " + theLastName;
+  }
+  return lastName;
+}
+
+var mjName = celebrityName ("Michael"); // At this juncture, the celebrityName outer function has returned.
+console.log(mjName);
+// The closure (lastName) is called here after the outer function has returned above
+// Yet, the closure still has access to the outer function's variables and parameter
+console.log(mjName ("Jackson")); // This celebrity is Michael Jackson 
+
+function celebrityID () {
+  var celebrityID = 999;
+  // We are returning an object with some inner functions
+  // All the inner functions have access to the outer function's variables
+  return {
+      getID: function ()  {
+          // This inner function will return the UPDATED celebrityID variable
+          // It will return the current value of celebrityID, even after the changeTheID function changes it
+        return celebrityID;
+      },
+      setID: function (theNewID)  {
+          // This inner function will change the outer function's variable anytime
+          celebrityID = theNewID;
+      }
+  }
+
+}
+
+var mjID = celebrityID (); // At this juncture, the celebrityID outer function has returned.
+console.log(mjID.getID()) // 999
+console.log(mjID.setID(567)) // Changes the outer function's variable
+console.log(mjID.getID()) // 567: It returns the updated celebrityId variable 
+
+// This example is explained in detail below (just after this code box).
+function celebrityIDCreator (theCelebrities) {
+  var uniqueID = 100;
+  for (let i = 0; i < theCelebrities.length; i++) {
+    theCelebrities[i].id = function ()  {
+      return uniqueID + i;
+    }
+  }
+  
+  return theCelebrities;
+}
+
+var actionCelebs = [{name:"Stallone", id:0}, {name:"Cruise", id:0}, {name:"Willis", id:0}];
+
+var createIdForActionCelebs = celebrityIDCreator (actionCelebs);
+
+var stalloneID = createIdForActionCelebs [0]; 
+console.log(stalloneID.id()); // 103
+var cruiseID = createIdForActionCelebs [1]; 
+console.log(cruiseID.id()); // 103
+
+// for (var i = 0; i < 5; i++) {
+// 	(function (j) {
+//     setTimeout(function() { console.log(j); }, j * 1000 );
+//   })(i)
+// }
+
+console.log(1 && 100);
+
+var a={},
+    b={key:'b'},
+    c={key:'c'};
+
+a[b]=123;
+a[c]=456;
+
+console.log(a);
+console.log(b);
+console.log(c);
+console.log(a[b]);
+console.log(a[c]);
