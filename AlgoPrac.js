@@ -1166,3 +1166,40 @@ function addThis(x){
 var invokeAdd = addThis(2);
 
 invokeAdd(3);
+
+function counter(){
+  let counter = 0;
+  function inner(){
+    counter += 1;
+    return counter;
+  }
+  return inner;
+}
+
+function anotherThing() {
+  let functionCall = counter();
+  let c1 = functionCall();
+  let c2 = functionCall();
+  let c3 = functionCall();
+  console.log("These things: ", c1, c2, c3)
+}
+
+anotherThing();
+
+function run() {
+
+  console.log(typeof foo); // function pointer
+  console.log(typeof bar); // undefined
+
+  var foo = 'hello',
+      bar = function() {
+          return 'world';
+      };
+
+  function foo() {
+      return 'hello';
+  }
+
+};
+
+run();
