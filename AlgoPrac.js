@@ -1203,3 +1203,63 @@ function run() {
 };
 
 run();
+
+function makeACbFunc(a, cb){
+  let x = 2;
+  let y = 3;
+  if (a){
+    cb(x,y);
+  }
+}
+
+function addPrac(x, y){
+  console.log(x+y)
+  return x + y;
+}
+
+makeACbFunc(2, addPrac);
+
+function doubleAfter2Seconds(x) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(x * 2);
+    }, 2000);
+  });
+}
+
+function doubleAfter2Seconds(x) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(x * 2);
+    }, 2000);
+  });
+}
+
+function addPromise(x){
+  return new Promise(resolve => {
+    doubleAfter2Seconds(10).then((a) => {
+      doubleAfter2Seconds(20).then((b) => {
+        doubleAfter2Seconds(30).then((c) => {
+          resolve(x + a + b + c);
+      	})
+      })
+    })
+  });
+}
+
+addPromise(10).then((sum) => {
+  console.log(sum);
+});
+
+
+async function addAsync(x) {
+  const a = await doubleAfter2Seconds(10);
+  const b = await doubleAfter2Seconds(a);
+  const c = await doubleAfter2Seconds(b);
+  return c;
+}
+
+
+addAsync(10).then((sum) => {
+  console.log(sum);
+});
