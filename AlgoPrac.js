@@ -1219,6 +1219,8 @@ function addPrac(x, y){
 
 makeACbFunc(2, addPrac);
 
+//PROMISES
+
 function doubleAfter2Seconds(x) {
   return new Promise(resolve => {
     setTimeout(() => {
@@ -1251,6 +1253,7 @@ addPromise(10).then((sum) => {
   console.log(sum);
 });
 
+//ASYNC AWAIT
 
 async function addAsync(x) {
   const a = await doubleAfter2Seconds(10);
@@ -1262,4 +1265,32 @@ async function addAsync(x) {
 
 addAsync(10).then((sum) => {
   console.log(sum);
+});
+
+class thisCar extends ParkingGarage{
+  constructor(car){
+    super()
+    this.car = car;
+    super.park(this.car);
+  }
+}
+
+let poo = new thisCar("Honda")
+console.log(poo);
+
+new Promise(function(resolve, reject) {
+  setTimeout(() => resolve(1), 2000);
+
+}).then((result) => {
+  alert(result);
+  return result + 2;
+}).then((result) => {
+  throw new Error('FAILED HERE');
+  alert(result);
+  return result + 2;
+}).then((result) => {
+  alert(result);
+  return result + 2;
+}).catch((e) => {
+  console.log('error: ', e)
 });
