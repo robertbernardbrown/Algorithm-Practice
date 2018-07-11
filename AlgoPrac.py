@@ -811,7 +811,20 @@ def fibo(n):
 		print("1!")
 		return 1
 
-def frogHop(feet):
-	stones = feet - 1
-	if feet = 0:
-		frogHop(feet)
+#============================================
+#CRACKING CODING INTERVIEW
+#============================================
+
+# implement algo to determine if string has all unique characters - what if you can't use additional data structures?
+
+exampStr = ""
+
+def allUniqueChars(str):
+	sortStr = sorted(str)
+	for i in range(len(sortStr)):
+		if (i+1) < len(sortStr):
+			if sortStr[i] == sortStr[i+1]:
+				return False
+	return True
+
+print(allUniqueChars(exampStr))
