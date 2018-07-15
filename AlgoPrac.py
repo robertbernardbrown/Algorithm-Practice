@@ -846,3 +846,11 @@ def isPermutation(str1, str2):
 	return True
 
 print(isPermutation("", ""))
+
+# replace spaces in str with %20
+
+def URLify(string):
+	URL = string.replace(" ", "%20")
+	return URL
+
+print(URLify("you are a   loser"))
