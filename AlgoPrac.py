@@ -828,3 +828,21 @@ def allUniqueChars(str):
 	return True
 
 print(allUniqueChars(exampStr))
+
+# Given two strings, write algo to determine if one is a permutation of the other
+
+def permutationHash(string):
+	hashNum = 0
+	for char in string:
+		hashNum += ord(char)
+	return hashNum % len(string)
+
+def isPermutation(str1, str2):
+	if len(str1) and len(str2):
+		if permutationHash(str1) == permutationHash(str2):
+			return True
+		else:
+			return False
+	return True
+
+print(isPermutation("", ""))
